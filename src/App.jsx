@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import plots from "./data/plots";
-import apartments from "./data/apartments";
-import villas from "./data/villas";
+import plots from "./data/Plots";
+import apartments from "./data/Apartments";
+import villas from "./data/Villas";
 
 const properties = [...plots, ...apartments, ...villas];
 
