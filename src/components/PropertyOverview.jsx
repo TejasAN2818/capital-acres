@@ -1,31 +1,53 @@
+import EnquiryButton from "./EnquiryButton";
+
 export default function PropertyOverview({
   property
 }) {
 
   return (
-    <div className="flex justify-between mt-2">
+    <div className="flex items-end justify-between gap-2 mt-1">
 
-      <div>
+      {/* LEFT SIDE */}
+      <div className="flex gap-3">
 
-        <p className="text-[10px] text-gray-400">
-          Size
-        </p>
+        {/* SIZE */}
+        <div>
 
-        <p className="font-bold text-xs">
-          {property.availableSize}
-        </p>
+          <p className="text-[9px] text-gray-400 leading-none">
+            Size
+          </p>
+
+          <p className="font-bold text-[11px] leading-none mt-1">
+            {property.availableSize}
+          </p>
+
+        </div>
+
+        {/* UNITS */}
+        <div>
+
+          <p className="text-[9px] text-gray-400 leading-none">
+            Units
+          </p>
+
+          <p className="font-bold text-[11px] leading-none mt-1">
+            {property.totalUnits}
+          </p>
+
+        </div>
 
       </div>
 
-      <div className="text-right">
+      {/* ENQUIRY BUTTON */}
+      <div
+        onClick={(e) =>
+          e.stopPropagation()
+        }
+      >
 
-        <p className="text-[10px] text-gray-400">
-          Units
-        </p>
-
-        <p className="font-bold text-xs">
-          {property.totalUnits}
-        </p>
+        <EnquiryButton
+          property={property}
+        />
 
       </div>
 

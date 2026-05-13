@@ -80,7 +80,6 @@ Press Cancel to use different number.`
     const savedMobile =
       localStorage.getItem("mobile");
 
-    // USER ALREADY EXISTS
     if (
       savedName &&
       savedMobile
@@ -91,31 +90,27 @@ Press Cancel to use different number.`
       return;
     }
 
-    // OPEN FORM
     setShowForm(true);
   };
 
   return (
     <>
-      <div className="flex gap-3 mt-6">
-
-        <a
-          href={property.locationLink}
-          target="_blank"
-          rel="noreferrer"
-          className="flex-1 text-center bg-slate-200 py-3 rounded-xl font-semibold"
-        >
-          Location
-        </a>
-
-        <button
-          onClick={openEnquiry}
-          className="flex-1 bg-slate-900 text-white py-3 rounded-xl font-semibold"
-        >
-          Enquiry
-        </button>
-
-      </div>
+      <button
+        onClick={openEnquiry}
+        className="
+          bg-slate-900
+          hover:bg-slate-700
+          text-white
+          text-[10px]
+          px-2.5
+          py-1.5
+          rounded-md
+          font-semibold
+          whitespace-nowrap
+        "
+      >
+        Enquiry
+      </button>
 
       <EnquiryModal
         property={property}
