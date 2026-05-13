@@ -12,44 +12,80 @@ export default function PropertyCard({ property }) {
 
   return (
     <>
+      {/* CARD */}
       <div
         onClick={() =>
           setShowDetails(true)
         }
-        className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1 transition duration-300 min-w-[320px] max-w-[380px] cursor-pointer"
+        className="
+          bg-white
+          rounded-2xl
+          shadow-md
+          hover:shadow-xl
+          transition
+          duration-300
+          cursor-pointer
+          overflow-hidden
+          flex
+          min-w-[320px]
+          max-w-[340px]
+          h-[150px]
+        "
       >
 
-        <PropertyImageSlider
-          property={property}
-        />
+        {/* LEFT IMAGE */}
+        <div className="w-[42%] h-full">
 
-        <div className="p-5">
+          <PropertyImageSlider
+            property={property}
+          />
 
-          <p className="text-gray-500">
-            📍 {property.location}
-          </p>
+        </div>
 
-          <h2 className="text-2xl font-bold text-slate-800 mt-2">
-            {property.projectName}
-          </h2>
+        {/* RIGHT CONTENT */}
+        <div className="w-[58%] p-3 flex flex-col justify-between">
 
+          <div>
+
+            {/* LOCATION */}
+            <p className="text-gray-500 text-xs">
+
+              📍 {property.location}
+
+            </p>
+
+            {/* PROJECT NAME */}
+            <h2 className="text-sm font-bold text-slate-800 mt-1 line-clamp-2">
+
+              {property.projectName}
+
+            </h2>
+
+            {/* PRICE */}
+            <p className="text-emerald-600 text-lg font-bold mt-2">
+
+              {property.price}
+
+            </p>
+
+            {/* SQFT */}
+            <p className="text-xs text-gray-500">
+
+              {property.pricePerSqft} / Sq.ft
+
+            </p>
+
+          </div>
+
+          {/* OVERVIEW */}
           <PropertyOverview
             property={property}
           />
 
-          <div
-            onClick={(e) =>
-              e.stopPropagation()
-            }
-          >
-            <EnquiryButton
-              property={property}
-            />
-          </div>
-
         </div>
       </div>
 
+      {/* DETAILS MODAL */}
       {showDetails && (
         <PropertyDetailModal
           property={property}

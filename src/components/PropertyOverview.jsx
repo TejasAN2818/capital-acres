@@ -3,15 +3,15 @@ export default function PropertyOverview({
 }) {
 
   return (
-    <div className="flex justify-between mt-5">
+    <div className="flex justify-between mt-2">
 
       <div>
 
-        <p className="text-gray-400 text-sm">
-          Available Size
+        <p className="text-[10px] text-gray-400">
+          Size
         </p>
 
-        <p className="font-bold">
+        <p className="font-bold text-xs">
           {property.availableSize}
         </p>
 
@@ -19,11 +19,11 @@ export default function PropertyOverview({
 
       <div className="text-right">
 
-        <p className="text-gray-400 text-sm">
-          Total Units
+        <p className="text-[10px] text-gray-400">
+          Units
         </p>
 
-        <p className="font-bold">
+        <p className="font-bold text-xs">
           {property.totalUnits}
         </p>
 
