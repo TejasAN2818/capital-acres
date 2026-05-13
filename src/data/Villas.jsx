@@ -1,83 +1,142 @@
 const villas = [
   {
     id: 1,
+    projectName: "Royal Villa",
     type: "Villa",
-    title: "Royal Villa",
     location: "Bangalore",
+    pricePerSqft: "₹9500",
+    availableSize: "4 BHK",
     price: "2Cr",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop"
+    projectSize: "15 Acres",
+    totalUnits: "90",
+    builderName: "Royal Builders",
+    landmark: "Near Airport",
+    approvals: "RERA Approved",
+    amenities: "Private Garden, Pool, Gym",
+    bankLoans: "SBI, HDFC",
+    nearbyPlaces: "Airport, Schools",
+    description:
+      "Luxury villas with spacious layouts and premium amenities.",
+
+    images: [
+      "/images/royal-villa/1.webp",
+      "/images/royal-villa/2.webp",
+      "/images/royal-villa/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 2,
+    projectName: "Lake View Villas",
     type: "Villa",
-    title: "Lake View Villa",
     location: "Chennai",
+    pricePerSqft: "₹8800",
+    availableSize: "3 BHK",
     price: "1.8Cr",
-    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop"
+    projectSize: "12 Acres",
+    totalUnits: "70",
+    builderName: "Lake Builders",
+    landmark: "Near Lake",
+    approvals: "DTCP Approved",
+    amenities: "Club House, Park",
+    bankLoans: "ICICI, Axis",
+    nearbyPlaces: "Lake, Schools",
+    description:
+      "Beautiful villas surrounded by nature and lake views.",
+
+    images: [
+      "/images/lake-view-villas/1.webp",
+      "/images/lake-view-villas/2.webp",
+      "/images/lake-view-villas/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 3,
+    projectName: "Palm Villas",
     type: "Villa",
-    title: "Palm Villa",
     location: "Hyderabad",
+    pricePerSqft: "₹9100",
+    availableSize: "4 BHK",
     price: "2.2Cr",
-    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop"
+    projectSize: "20 Acres",
+    totalUnits: "120",
+    builderName: "Palm Infra",
+    landmark: "Near IT Hub",
+    approvals: "HMDA Approved",
+    amenities: "Pool, Gym, Security",
+    bankLoans: "SBI",
+    nearbyPlaces: "IT Hub, Mall",
+    description:
+      "Premium gated villa community in prime location.",
+
+    images: [
+      "/images/palm-villas/1.webp",
+      "/images/palm-villas/2.webp",
+      "/images/palm-villas/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 4,
+    projectName: "Nature Villas",
     type: "Villa",
-    title: "Luxury Villa",
     location: "Mysore",
-    price: "1.9Cr",
-    image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200&auto=format&fit=crop"
+    pricePerSqft: "₹8200",
+    availableSize: "3 BHK",
+    price: "1.7Cr",
+    projectSize: "10 Acres",
+    totalUnits: "60",
+    builderName: "Nature Homes",
+    landmark: "Near Ring Road",
+    approvals: "MUDA Approved",
+    amenities: "Garden, Jogging Track",
+    bankLoans: "Canara Bank",
+    nearbyPlaces: "Schools, Hospitals",
+    description:
+      "Peaceful villa community with green surroundings.",
+
+    images: [
+      "/images/nature-villas/1.webp",
+      "/images/nature-villas/2.webp",
+      "/images/nature-villas/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 5,
+    projectName: "Elite Villas",
     type: "Villa",
-    title: "Nature Villa",
     location: "Bangalore",
-    price: "2.5Cr",
-    image: "https://images.unsplash.com/photo-1605146769289-440113cc3d00?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 6,
-    type: "Villa",
-    title: "Dream Villa",
-    location: "Chennai",
-    price: "2Cr",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 7,
-    type: "Villa",
-    title: "Sky Villa",
-    location: "Hyderabad",
-    price: "2.3Cr",
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 8,
-    type: "Villa",
-    title: "Hill View Villa",
-    location: "Mysore",
-    price: "1.7Cr",
-    image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 9,
-    type: "Villa",
-    title: "Classic Villa",
-    location: "Bangalore",
-    price: "2.1Cr",
-    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 10,
-    type: "Villa",
-    title: "Elite Villa",
-    location: "Chennai",
-    price: "2.4Cr",
-    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=1200&auto=format&fit=crop"
+    pricePerSqft: "₹10500",
+    availableSize: "5 BHK",
+    price: "2.8Cr",
+    projectSize: "18 Acres",
+    totalUnits: "110",
+    builderName: "Elite Developers",
+    landmark: "Near NICE Road",
+    approvals: "BDA Approved",
+    amenities: "Private Pool, Club House",
+    bankLoans: "HDFC, SBI",
+    nearbyPlaces: "Tech Park, Airport",
+    description:
+      "Ultra luxury villas designed for premium living.",
+
+    images: [
+      "/images/elite-villas/1.webp",
+      "/images/elite-villas/2.webp",
+      "/images/elite-villas/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   }
 ];
 

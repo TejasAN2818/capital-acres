@@ -1,83 +1,142 @@
 const apartments = [
   {
     id: 1,
+    projectName: "Sky Residency",
     type: "Apartment",
-    title: "Luxury Apartment",
     location: "Bangalore",
+    pricePerSqft: "₹7200",
+    availableSize: "2 BHK",
     price: "1Cr",
-    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop"
+    projectSize: "5 Acres",
+    totalUnits: "240",
+    builderName: "Sky Builders",
+    landmark: "Near Metro Station",
+    approvals: "RERA Approved",
+    amenities: "Swimming Pool, Gym, Club House",
+    bankLoans: "SBI, HDFC",
+    nearbyPlaces: "Metro, Mall, Schools",
+    description:
+      "Premium apartments with luxury amenities and modern architecture.",
+
+    images: [
+      "/images/sky-residency/1.webp",
+      "/images/sky-residency/2.webp",
+      "/images/sky-residency/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 2,
+    projectName: "Urban Heights",
     type: "Apartment",
-    title: "City Heights",
     location: "Hyderabad",
-    price: "85L",
-    image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop"
+    pricePerSqft: "₹6800",
+    availableSize: "3 BHK",
+    price: "1.2Cr",
+    projectSize: "8 Acres",
+    totalUnits: "300",
+    builderName: "Urban Infra",
+    landmark: "Near IT Park",
+    approvals: "GHMC Approved",
+    amenities: "Gym, Park, Security",
+    bankLoans: "ICICI, Axis",
+    nearbyPlaces: "IT Park, Schools",
+    description:
+      "Modern apartments located near major IT hubs.",
+
+    images: [
+      "/images/urban-heights/1.webp",
+      "/images/urban-heights/2.webp",
+      "/images/urban-heights/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 3,
+    projectName: "Palm Residency",
     type: "Apartment",
-    title: "Sky Residency",
     location: "Chennai",
+    pricePerSqft: "₹6500",
+    availableSize: "2 BHK",
     price: "95L",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop"
+    projectSize: "6 Acres",
+    totalUnits: "180",
+    builderName: "Palm Developers",
+    landmark: "Near Highway",
+    approvals: "CMDA Approved",
+    amenities: "Swimming Pool, Jogging Track",
+    bankLoans: "HDFC, SBI",
+    nearbyPlaces: "Bus Stand, Mall",
+    description:
+      "Comfortable family apartments with excellent connectivity.",
+
+    images: [
+      "/images/palm-residency/1.webp",
+      "/images/palm-residency/2.webp",
+      "/images/palm-residency/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 4,
+    projectName: "Elite Towers",
     type: "Apartment",
-    title: "Urban Homes",
-    location: "Bangalore",
-    price: "1.2Cr",
-    image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200&auto=format&fit=crop"
+    location: "Mysore",
+    pricePerSqft: "₹5900",
+    availableSize: "3 BHK",
+    price: "88L",
+    projectSize: "4 Acres",
+    totalUnits: "120",
+    builderName: "Elite Homes",
+    landmark: "Near Ring Road",
+    approvals: "MUDA Approved",
+    amenities: "Security, Garden",
+    bankLoans: "Canara Bank",
+    nearbyPlaces: "Schools, Hospitals",
+    description:
+      "Elegant apartments designed for modern living.",
+
+    images: [
+      "/images/elite-towers/1.webp",
+      "/images/elite-towers/2.webp",
+      "/images/elite-towers/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   },
+
   {
     id: 5,
+    projectName: "Royal Heights",
     type: "Apartment",
-    title: "Elite Residency",
-    location: "Mysore",
-    price: "78L",
-    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 6,
-    type: "Apartment",
-    title: "Modern Flats",
-    location: "Hyderabad",
-    price: "90L",
-    image: "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 7,
-    type: "Apartment",
-    title: "Hill View Apartment",
-    location: "Chennai",
-    price: "88L",
-    image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 8,
-    type: "Apartment",
-    title: "Palm Residency",
     location: "Bangalore",
-    price: "1.1Cr",
-    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 9,
-    type: "Apartment",
-    title: "Green Homes",
-    location: "Mysore",
-    price: "82L",
-    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop"
-  },
-  {
-    id: 10,
-    type: "Apartment",
-    title: "Royal Heights",
-    location: "Hyderabad",
-    price: "1Cr",
-    image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200&auto=format&fit=crop"
+    pricePerSqft: "₹7800",
+    availableSize: "4 BHK",
+    price: "1.5Cr",
+    projectSize: "10 Acres",
+    totalUnits: "420",
+    builderName: "Royal Group",
+    landmark: "Near Airport",
+    approvals: "RERA Approved",
+    amenities: "Club House, Gym, Pool",
+    bankLoans: "SBI, ICICI",
+    nearbyPlaces: "Airport, Tech Park",
+    description:
+      "Luxury high-rise apartments with premium lifestyle facilities.",
+
+    images: [
+      "/images/royal-heights/1.webp",
+      "/images/royal-heights/2.webp",
+      "/images/royal-heights/3.webp"
+    ],
+
+    locationLink: "https://maps.google.com"
   }
 ];
 
