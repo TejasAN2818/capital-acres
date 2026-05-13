@@ -9,7 +9,8 @@ export default function EnquiryButton({
   const [showForm, setShowForm] =
     useState(false);
 
-  const submitSavedLead = async () => {
+  // SUBMIT SAVED USER DATA
+  const submitSavedLead = () => {
 
     const userName =
       localStorage.getItem("userName");
@@ -17,61 +18,62 @@ export default function EnquiryButton({
     const mobile =
       localStorage.getItem("mobile");
 
-    try {
-
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxcqOS_Anq0urwwO2o-63Nt3QERJDXWxB2TFyx7XYJrwODVpx7ZIor7-fQ6OZ6k_cr5/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
-          body: JSON.stringify({
-            name: userName,
-            mobile: mobile,
-            property:
-              property.projectName,
-            location:
-              property.location
-          })
-        }
-      );
-
-      const useDifferent =
-        confirm(
-          `Your enquiry submitted successfully.
+    // SHOW ALERT IMMEDIATELY
+    const useDifferent =
+      window.confirm(
+        `Your enquiry submitted successfully.
 
 Name: ${userName}
 Mobile: ${mobile}
 
 Press OK to continue.
 Press Cancel to use different number.`
-        );
-
-      if (!useDifferent) {
-
-        localStorage.removeItem(
-          "userName"
-        );
-
-        localStorage.removeItem(
-          "mobile"
-        );
-
-        setShowForm(true);
-      }
-
-    } catch {
-
-      alert(
-        "Something went wrong"
       );
 
+    // SEND DATA IN BACKGROUND
+    fetch(
+      "https://script.google.com/macros/s/AKfycbxcqOS_Anq0urwwO2o-63Nt3QERJDXWxB2TFyx7XYJrwODVpx7ZIor7-fQ6OZ6k_cr5/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+        body: JSON.stringify({
+          name: userName,
+          mobile: mobile,
+          property:
+            property.projectName,
+          location:
+            property.location
+        })
+      }
+    ).catch(() => {
+
+      console.log(
+        "Background submit failed"
+      );
+
+    });
+
+    // USE DIFFERENT NUMBER
+    if (!useDifferent) {
+
+      localStorage.removeItem(
+        "userName"
+      );
+
+      localStorage.removeItem(
+        "mobile"
+      );
+
+      setShowForm(true);
     }
+
   };
 
+  // OPEN ENQUIRY
   const openEnquiry = () => {
 
     const savedName =
@@ -80,6 +82,7 @@ Press Cancel to use different number.`
     const savedMobile =
       localStorage.getItem("mobile");
 
+    // USER ALREADY EXISTS
     if (
       savedName &&
       savedMobile
@@ -90,6 +93,7 @@ Press Cancel to use different number.`
       return;
     }
 
+    // OPEN FORM
     setShowForm(true);
   };
 

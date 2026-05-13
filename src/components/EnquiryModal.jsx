@@ -12,7 +12,7 @@ export default function EnquiryModal({
   const [mobile, setMobile] =
     useState("");
 
-  const submitLead = async () => {
+  const submitLead = () => {
 
     if (!userName || !mobile) {
 
@@ -23,52 +23,52 @@ export default function EnquiryModal({
       return;
     }
 
-    try {
+    // SAVE USER IN LOCAL STORAGE
+    localStorage.setItem(
+      "userName",
+      userName
+    );
 
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxcqOS_Anq0urwwO2o-63Nt3QERJDXWxB2TFyx7XYJrwODVpx7ZIor7-fQ6OZ6k_cr5/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
-          body: JSON.stringify({
-            name: userName,
-            mobile: mobile,
-            property:
-              property.projectName,
-            location:
-              property.location
-          })
-        }
+    localStorage.setItem(
+      "mobile",
+      mobile
+    );
+
+    // CLOSE MODAL FAST
+    setShowForm(false);
+
+    // SHOW SUCCESS ALERT FAST
+    alert(
+      "Your enquiry submitted successfully."
+    );
+
+    // SEND DATA IN BACKGROUND
+    fetch(
+      "https://script.google.com/macros/s/AKfycbxcqOS_Anq0urwwO2o-63Nt3QERJDXWxB2TFyx7XYJrwODVpx7ZIor7-fQ6OZ6k_cr5/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
+        body: JSON.stringify({
+          name: userName,
+          mobile: mobile,
+          property:
+            property.projectName,
+          location:
+            property.location
+        })
+      }
+    ).catch(() => {
+
+      console.log(
+        "Background submit failed"
       );
 
-      // SAVE USER
-      localStorage.setItem(
-        "userName",
-        userName
-      );
+    });
 
-      localStorage.setItem(
-        "mobile",
-        mobile
-      );
-
-      setShowForm(false);
-
-      alert(
-        "Your enquiry submitted successfully."
-      );
-
-    } catch {
-
-      alert(
-        "Something went wrong"
-      );
-
-    }
   };
 
   if (!showForm) return null;
@@ -84,6 +84,7 @@ export default function EnquiryModal({
 
         </h2>
 
+        {/* NAME */}
         <input
           type="text"
           placeholder="Your Name"
@@ -93,9 +94,18 @@ export default function EnquiryModal({
               e.target.value
             )
           }
-          className="w-full border rounded-xl px-4 py-3 mb-4"
+          className="
+            w-full
+            border
+            rounded-xl
+            px-4
+            py-3
+            mb-4
+            outline-none
+          "
         />
 
+        {/* MOBILE */}
         <input
           type="tel"
           placeholder="Mobile Number"
@@ -105,23 +115,45 @@ export default function EnquiryModal({
               e.target.value
             )
           }
-          className="w-full border rounded-xl px-4 py-3 mb-6"
+          className="
+            w-full
+            border
+            rounded-xl
+            px-4
+            py-3
+            mb-6
+            outline-none
+          "
         />
 
+        {/* BUTTONS */}
         <div className="flex gap-3">
 
           <button
             onClick={() =>
               setShowForm(false)
             }
-            className="flex-1 bg-gray-200 py-3 rounded-xl"
+            className="
+              flex-1
+              bg-gray-200
+              py-3
+              rounded-xl
+              font-semibold
+            "
           >
             Cancel
           </button>
 
           <button
             onClick={submitLead}
-            className="flex-1 bg-slate-900 text-white py-3 rounded-xl"
+            className="
+              flex-1
+              bg-slate-900
+              text-white
+              py-3
+              rounded-xl
+              font-semibold
+            "
           >
             Submit
           </button>
@@ -129,6 +161,7 @@ export default function EnquiryModal({
         </div>
 
       </div>
+
     </div>
   );
 }
