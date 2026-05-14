@@ -13,7 +13,7 @@ export default function PropertyDetailModal({
 
   const currentImageUrl =
     property.images?.[
-      currentImage
+    currentImage
     ] || property.image;
 
   const nextImage = () => {
@@ -42,18 +42,29 @@ export default function PropertyDetailModal({
         <button
           onClick={closeModal}
           className="
-            fixed
-            top-3
-            right-3
-            z-50
-            bg-white
-            shadow-2xl
-            px-4
-            py-2
-            rounded-xl
-            text-sm
-            font-semibold
-          "
+    fixed
+    top-3
+    right-3
+    z-50
+    bg-gradient-to-r
+    from-rose-500
+    to-red-600
+    hover:from-rose-600
+    hover:to-red-700
+    text-white
+    shadow-2xl
+    px-4
+    py-2
+    rounded-xl
+    text-sm
+    font-semibold
+    border
+    border-white/20
+    backdrop-blur-md
+    transition
+    duration-300
+    hover:scale-105
+  "
         >
           ✕ Close
         </button>
@@ -176,14 +187,14 @@ export default function PropertyDetailModal({
           </h1>
 
           {/* LOCATION + LANDMARK */}
-<div className="mt-5">
+          <div className="mt-5">
 
-  {/* LOCATION */}
-  <div className="flex items-start gap-3">
+            {/* LOCATION */}
+            <div className="flex items-start gap-3">
 
-    {/* ICON */}
-    <div
-      className="
+              {/* ICON */}
+              <div
+                className="
         w-11
         h-11
         rounded-2xl
@@ -195,42 +206,42 @@ export default function PropertyDetailModal({
         shadow-sm
         flex-shrink-0
       "
-    >
-      📍
-    </div>
+              >
+                📍
+              </div>
 
-    {/* TEXT */}
-    <div>
+              {/* TEXT */}
+              <div>
 
-      <p
-        className="
+                <p
+                  className="
           text-xl
           md:text-3xl
           font-bold
           text-slate-800
           leading-tight
         "
-      >
-        {property.location}
-      </p>
+                >
+                  {property.location}
+                </p>
 
-      {/* LANDMARK */}
-      <p
-        className="
+                {/* LANDMARK */}
+                <p
+                  className="
           text-sm
           md:text-base
           text-slate-500
           mt-1
         "
-      >
-        Near {property.landmark}
-      </p>
+                >
+                  Near {property.landmark}
+                </p>
 
-    </div>
+              </div>
 
-  </div>
+            </div>
 
-</div>
+          </div>
 
           {/* PRICE */}
           <p
@@ -436,7 +447,7 @@ export default function PropertyDetailModal({
                 <div>
 
                   <p className="text-[11px] text-gray-400 uppercase font-semibold">
-                    Builder Name
+                    Builder Name 
                   </p>
 
                   <p className="text-[13px] leading-6 text-slate-700 mt-1">
@@ -477,7 +488,7 @@ export default function PropertyDetailModal({
                 <div>
 
                   <p className="text-[11px] text-gray-400 uppercase font-semibold">
-                    Bank Loans
+                    Bank Loan
                   </p>
 
                   <p className="text-[13px] leading-6 text-slate-700 mt-1">
