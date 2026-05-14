@@ -12,7 +12,7 @@ const plots = [
     builderName: "Capital Builders",
     landmark: "Near Airport",
     approvals: "BMRDA Approved",
-    amenities: "Club House, Park, Security",
+    amenities: "Club House, Park, SecurityClub House, Park, SecurityClub House, Park, SecurityClub House, Park, Security",
     bankLoans: "SBI, HDFC",
     nearbyPlaces: "Airport, Schools, Mall",
     description:

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function PropertyDetailModal({
   property,
@@ -32,6 +32,51 @@ export default function PropertyDetailModal({
         : prev - 1
     );
   };
+
+  // TOUCH START
+const handleTouchStart = (e) => {
+
+  touchStartX.current =
+    e.changedTouches[0].screenX;
+
+};
+
+// TOUCH END
+const handleTouchEnd = (e) => {
+
+  touchEndX.current =
+    e.changedTouches[0].screenX;
+
+  handleSwipe();
+
+};
+
+// HANDLE SWIPE
+const handleSwipe = () => {
+
+  const distance =
+    touchStartX.current -
+    touchEndX.current;
+
+  // SWIPE LEFT
+  if (distance > 50) {
+
+    nextImage();
+
+  }
+
+  // SWIPE RIGHT
+  if (distance < -50) {
+
+    prevImage();
+
+  }
+
+};
+
+  const touchStartX = useRef(0);
+
+const touchEndX = useRef(0);
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 overflow-y-auto">
@@ -70,7 +115,18 @@ export default function PropertyDetailModal({
         </button>
 
         {/* IMAGE SECTION */}
-        <div className="relative h-[280px] md:h-[650px] overflow-hidden bg-black">
+        <div
+  className="
+    relative
+    h-[280px]
+    md:h-[650px]
+    overflow-hidden
+    bg-black
+    touch-pan-y
+  "
+  onTouchStart={handleTouchStart}
+  onTouchEnd={handleTouchEnd}>
+          
 
           {/* BLUR BACKGROUND */}
           <div
