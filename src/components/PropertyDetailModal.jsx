@@ -13,7 +13,7 @@ export default function PropertyDetailModal({
 
   const currentImageUrl =
     property.images?.[
-    currentImage
+      currentImage
     ] || property.image;
 
   const nextImage = () => {
@@ -38,19 +38,20 @@ export default function PropertyDetailModal({
 
       <div className="bg-white min-h-screen max-w-6xl mx-auto relative">
 
-        {/* FIXED CLOSE BUTTON */}
+        {/* CLOSE BUTTON */}
         <button
           onClick={closeModal}
           className="
             fixed
-            top-4
-            right-4
+            top-3
+            right-3
             z-50
             bg-white
             shadow-2xl
-            px-5
+            px-4
             py-2
             rounded-xl
+            text-sm
             font-semibold
           "
         >
@@ -58,7 +59,7 @@ export default function PropertyDetailModal({
         </button>
 
         {/* IMAGE SECTION */}
-        <div className="relative h-[320px] md:h-[650px] overflow-hidden bg-black">
+        <div className="relative h-[280px] md:h-[650px] overflow-hidden bg-black">
 
           {/* BLUR BACKGROUND */}
           <div
@@ -97,11 +98,12 @@ export default function PropertyDetailModal({
             <div
               className="
                 absolute
-                bottom-4
-                right-4
+                bottom-3
+                right-3
                 z-20
                 bg-black/70
                 text-white
+                text-xs
                 px-3
                 py-1
                 rounded-xl
@@ -117,15 +119,15 @@ export default function PropertyDetailModal({
               onClick={prevImage}
               className="
                 absolute
-                left-4
+                left-3
                 top-1/2
                 -translate-y-1/2
                 z-20
                 bg-white/90
-                w-10
-                h-10
+                w-9
+                h-9
                 rounded-full
-                text-lg
+                text-sm
                 shadow-xl
               "
             >
@@ -139,15 +141,15 @@ export default function PropertyDetailModal({
               onClick={nextImage}
               className="
                 absolute
-                right-4
+                right-3
                 top-1/2
                 -translate-y-1/2
                 z-20
                 bg-white/90
-                w-10
-                h-10
+                w-9
+                h-9
                 rounded-full
-                text-lg
+                text-sm
                 shadow-xl
               "
             >
@@ -158,13 +160,14 @@ export default function PropertyDetailModal({
         </div>
 
         {/* CONTENT */}
-        <div className="p-5 md:p-10">
+        <div className="p-4 md:p-10">
 
           {/* PROJECT NAME */}
           <h1
             className="
-              text-3xl
+              text-2xl
               md:text-5xl
+              leading-tight
               font-bold
               text-slate-800
             "
@@ -172,53 +175,70 @@ export default function PropertyDetailModal({
             {property.projectName}
           </h1>
 
-          {/* LOCATION */}
-          <div
-            className="
-    mt-4
-    bg-gradient-to-r
-    from-slate-100
-    to-slate-50
-    border
-    border-slate-200
-    rounded-2xl
-    p-5
-  "
-          >
+          {/* LOCATION + LANDMARK */}
+<div className="mt-5">
 
+  {/* LOCATION */}
+  <div className="flex items-start gap-3">
 
+    {/* ICON */}
+    <div
+      className="
+        w-11
+        h-11
+        rounded-2xl
+        bg-emerald-100
+        flex
+        items-center
+        justify-center
+        text-lg
+        shadow-sm
+        flex-shrink-0
+      "
+    >
+      📍
+    </div>
 
-            <p
-              className="
-      text-2xl
-      md:text-3xl
-      font-bold
-      text-slate-800
-      mt-2
-    "
-            >
-              📍 {property.location}
-            </p>
+    {/* TEXT */}
+    <div>
 
-            {/* LANDMARK */}
-            <div className="mt-4">
+      <p
+        className="
+          text-xl
+          md:text-3xl
+          font-bold
+          text-slate-800
+          leading-tight
+        "
+      >
+        {property.location}
+      </p>
 
+      {/* LANDMARK */}
+      <p
+        className="
+          text-sm
+          md:text-base
+          text-slate-500
+          mt-1
+        "
+      >
+        Near {property.landmark}
+      </p>
 
-              <p className="text-lg text-slate-700 mt-1">
-                {property.landmark}
-              </p>
+    </div>
 
-            </div>
+  </div>
 
-          </div>
+</div>
 
           {/* PRICE */}
           <p
             className="
-              text-emerald-600
-              text-4xl
+              text-3xl
               md:text-5xl
               font-bold
+              text-emerald-600
               mt-5
             "
           >
@@ -226,7 +246,7 @@ export default function PropertyDetailModal({
           </p>
 
           {/* BUTTONS */}
-          <div className="flex gap-4 mt-8 flex-wrap">
+          <div className="flex gap-3 mt-6">
 
             {/* LOCATION BUTTON */}
             <a
@@ -234,50 +254,54 @@ export default function PropertyDetailModal({
               target="_blank"
               rel="noreferrer"
               className="
+                flex-1
                 bg-blue-600
                 hover:bg-blue-700
                 text-white
-                px-8
-                py-4
-                rounded-2xl
-                font-bold
-                shadow-xl
+                text-sm
+                text-center
+                px-4
+                py-3
+                rounded-xl
+                font-semibold
+                shadow-lg
                 transition
               "
             >
-              📍 View Location
+              📍 Location
             </a>
 
             {/* ENQUIRY BUTTON */}
             <button
               className="
+                flex-1
                 bg-gradient-to-r
                 from-emerald-500
                 to-emerald-700
-                hover:scale-105
-                transition
                 text-white
-                px-8
-                py-4
-                rounded-2xl
-                font-bold
-                shadow-2xl
+                text-sm
+                px-4
+                py-3
+                rounded-xl
+                font-semibold
+                shadow-lg
+                transition
               "
             >
-              📞 Enquire Now
+              📞 Enquire
             </button>
 
           </div>
 
           {/* QUICK DETAILS */}
-          <div className="mt-10">
+          <div className="mt-8">
 
             <div
               className="
                 grid
                 grid-cols-2
-                md:grid-cols-3
-                gap-5
+                gap-3
+                md:grid-cols-4
               "
             >
 
@@ -287,17 +311,16 @@ export default function PropertyDetailModal({
                   bg-emerald-50
                   border
                   border-emerald-200
-                  p-5
-                  rounded-3xl
-                  shadow-sm
+                  p-3
+                  rounded-2xl
                 "
               >
 
-                <p className="text-emerald-600 text-sm font-semibold">
-                  Price Per Sq.ft
+                <p className="text-[11px] text-emerald-600 font-semibold">
+                  Price / Sq.ft
                 </p>
 
-                <p className="text-3xl font-bold text-emerald-700 mt-2">
+                <p className="text-xl font-bold text-emerald-700 mt-1">
                   {property.pricePerSqft}
                 </p>
 
@@ -307,16 +330,16 @@ export default function PropertyDetailModal({
               <div
                 className="
                   bg-slate-100
-                  p-5
-                  rounded-3xl
+                  p-3
+                  rounded-2xl
                 "
               >
 
-                <p className="text-gray-500 text-sm">
+                <p className="text-[11px] text-gray-500">
                   Available Size
                 </p>
 
-                <p className="text-2xl font-bold mt-2">
+                <p className="text-lg font-bold mt-1">
                   {property.availableSize}
                 </p>
 
@@ -326,16 +349,16 @@ export default function PropertyDetailModal({
               <div
                 className="
                   bg-slate-100
-                  p-5
-                  rounded-3xl
+                  p-3
+                  rounded-2xl
                 "
               >
 
-                <p className="text-gray-500 text-sm">
+                <p className="text-[11px] text-gray-500">
                   Project Size
                 </p>
 
-                <p className="text-2xl font-bold mt-2">
+                <p className="text-lg font-bold mt-1">
                   {property.projectSize}
                 </p>
 
@@ -345,141 +368,149 @@ export default function PropertyDetailModal({
               <div
                 className="
                   bg-slate-100
-                  p-5
-                  rounded-3xl
+                  p-3
+                  rounded-2xl
                 "
               >
 
-                <p className="text-gray-500 text-sm">
+                <p className="text-[11px] text-gray-500">
                   Total Units
                 </p>
 
-                <p className="text-2xl font-bold mt-2">
+                <p className="text-lg font-bold mt-1">
                   {property.totalUnits}
                 </p>
 
               </div>
-
-
-
-
 
             </div>
 
           </div>
 
           {/* DETAILS */}
-<div
-  className="
-    mt-10
-    bg-slate-50
-    rounded-3xl
-    p-6
-    border
-    border-slate-200
-  "
->
+          <div
+            className="
+              mt-8
+              bg-slate-50
+              rounded-3xl
+              p-4
+              border
+              border-slate-200
+            "
+          >
 
-  <div className="space-y-5">
+            <div className="space-y-5">
 
-    {/* ROW */}
-    <div className="flex justify-between gap-5 border-b pb-4">
+              {/* ROW */}
+              <div className="grid grid-cols-2 gap-4 border-b pb-4">
 
-      <div>
-        <p className="text-[11px] text-gray-400 uppercase font-semibold">
-          Amenities
-        </p>
+                <div>
 
-        <p className="text-sm text-slate-700 mt-1">
-          {property.amenities}
-        </p>
-      </div>
+                  <p className="text-[11px] text-gray-400 uppercase font-semibold">
+                    Amenities
+                  </p>
 
-      <div className="text-right">
-        <p className="text-[11px] text-gray-400 uppercase font-semibold">
-          Nearby Places
-        </p>
+                  <p className="text-[13px] leading-6 text-slate-700 mt-1">
+                    {property.amenities}
+                  </p>
 
-        <p className="text-sm text-slate-700 mt-1">
-          {property.nearbyPlaces}
-        </p>
-      </div>
+                </div>
 
-    </div>
+                <div>
 
-    {/* ROW */}
-    <div className="flex justify-between gap-5 border-b pb-4">
+                  <p className="text-[11px] text-gray-400 uppercase font-semibold">
+                    Nearby Places
+                  </p>
 
-      <div>
-        <p className="text-[11px] text-gray-400 uppercase font-semibold">
-          Builder Name
-        </p>
+                  <p className="text-[13px] leading-6 text-slate-700 mt-1">
+                    {property.nearbyPlaces}
+                  </p>
 
-        <p className="text-sm text-slate-700 mt-1">
-          {property.builderName}
-        </p>
-      </div>
+                </div>
 
-      <div className="text-right">
-        <p className="text-[11px] text-gray-400 uppercase font-semibold">
-          Property Type
-        </p>
+              </div>
 
-        <p className="text-sm text-slate-700 mt-1">
-          {property.type}
-        </p>
-      </div>
+              {/* ROW */}
+              <div className="grid grid-cols-2 gap-4 border-b pb-4">
 
-    </div>
+                <div>
 
-    {/* ROW */}
-    <div className="flex justify-between gap-5 border-b pb-4">
+                  <p className="text-[11px] text-gray-400 uppercase font-semibold">
+                    Builder Name
+                  </p>
 
-      <div>
-        <p className="text-[11px] text-gray-400 uppercase font-semibold">
-          Approvals
-        </p>
+                  <p className="text-[13px] leading-6 text-slate-700 mt-1">
+                    {property.builderName}
+                  </p>
 
-        <p className="text-sm text-slate-700 mt-1">
-          {property.approvals}
-        </p>
-      </div>
+                </div>
 
-      <div className="text-right">
-        <p className="text-[11px] text-gray-400 uppercase font-semibold">
-          Bank Loans
-        </p>
+                <div>
 
-        <p className="text-sm text-slate-700 mt-1">
-          {property.bankLoans}
-        </p>
-      </div>
+                  <p className="text-[11px] text-gray-400 uppercase font-semibold">
+                    Property Type
+                  </p>
 
-    </div>
+                  <p className="text-[13px] leading-6 text-slate-700 mt-1">
+                    {property.type}
+                  </p>
 
-    {/* DESCRIPTION */}
-    <div>
+                </div>
 
-      <p className="text-[11px] text-gray-400 uppercase font-semibold">
-        Description
-      </p>
+              </div>
 
-      <p
-        className="
-          text-sm
-          text-slate-700
-          mt-2
-          leading-7
-        "
-      >
-        {property.description}
-      </p>
+              {/* ROW */}
+              <div className="grid grid-cols-2 gap-4 border-b pb-4">
 
-    </div>
+                <div>
 
-  </div>
+                  <p className="text-[11px] text-gray-400 uppercase font-semibold">
+                    Approvals
+                  </p>
 
-</div>
+                  <p className="text-[13px] leading-6 text-slate-700 mt-1">
+                    {property.approvals}
+                  </p>
+
+                </div>
+
+                <div>
+
+                  <p className="text-[11px] text-gray-400 uppercase font-semibold">
+                    Bank Loans
+                  </p>
+
+                  <p className="text-[13px] leading-6 text-slate-700 mt-1">
+                    {property.bankLoans}
+                  </p>
+
+                </div>
+
+              </div>
+
+              {/* DESCRIPTION */}
+              <div>
+
+                <p className="text-[11px] text-gray-400 uppercase font-semibold">
+                  Description
+                </p>
+
+                <p
+                  className="
+                    text-[13px]
+                    leading-6
+                    text-slate-700
+                    mt-2
+                  "
+                >
+                  {property.description}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
 
         </div>
 
