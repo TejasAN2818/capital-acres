@@ -1,5 +1,7 @@
 import { useState, useRef } from "react";
 
+import EnquiryButton from "./EnquiryButton";
+
 export default function PropertyDetailModal({
   property,
   closeModal
@@ -34,49 +36,49 @@ export default function PropertyDetailModal({
   };
 
   // TOUCH START
-const handleTouchStart = (e) => {
+  const handleTouchStart = (e) => {
 
-  touchStartX.current =
-    e.changedTouches[0].screenX;
+    touchStartX.current =
+      e.changedTouches[0].screenX;
 
-};
+  };
 
-// TOUCH END
-const handleTouchEnd = (e) => {
+  // TOUCH END
+  const handleTouchEnd = (e) => {
 
-  touchEndX.current =
-    e.changedTouches[0].screenX;
+    touchEndX.current =
+      e.changedTouches[0].screenX;
 
-  handleSwipe();
+    handleSwipe();
 
-};
+  };
 
-// HANDLE SWIPE
-const handleSwipe = () => {
+  // HANDLE SWIPE
+  const handleSwipe = () => {
 
-  const distance =
-    touchStartX.current -
-    touchEndX.current;
+    const distance =
+      touchStartX.current -
+      touchEndX.current;
 
-  // SWIPE LEFT
-  if (distance > 50) {
+    // SWIPE LEFT
+    if (distance > 50) {
 
-    nextImage();
+      nextImage();
 
-  }
+    }
 
-  // SWIPE RIGHT
-  if (distance < -50) {
+    // SWIPE RIGHT
+    if (distance < -50) {
 
-    prevImage();
+      prevImage();
 
-  }
+    }
 
-};
+  };
 
   const touchStartX = useRef(0);
 
-const touchEndX = useRef(0);
+  const touchEndX = useRef(0);
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70 overflow-y-auto">
@@ -116,7 +118,7 @@ const touchEndX = useRef(0);
 
         {/* IMAGE SECTION */}
         <div
-  className="
+          className="
     relative
     h-[280px]
     md:h-[650px]
@@ -124,9 +126,9 @@ const touchEndX = useRef(0);
     bg-black
     touch-pan-y
   "
-  onTouchStart={handleTouchStart}
-  onTouchEnd={handleTouchEnd}>
-          
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}>
+
 
           {/* BLUR BACKGROUND */}
           <div
@@ -339,24 +341,10 @@ const touchEndX = useRef(0);
             </a>
 
             {/* ENQUIRY BUTTON */}
-            <button
-              className="
-                flex-1
-                bg-gradient-to-r
-                from-emerald-500
-                to-emerald-700
-                text-white
-                text-sm
-                px-4
-                py-3
-                rounded-xl
-                font-semibold
-                shadow-lg
-                transition
-              "
-            >
-              📞 Enquire
-            </button>
+            <EnquiryButton
+              property={property}
+              variant="large"
+            />
 
           </div>
 
@@ -503,7 +491,7 @@ const touchEndX = useRef(0);
                 <div>
 
                   <p className="text-[11px] text-gray-400 uppercase font-semibold">
-                    Builder Name 
+                    Builder Name
                   </p>
 
                   <p className="text-[13px] leading-6 text-slate-700 mt-1">

@@ -3,7 +3,8 @@ import { useState } from "react";
 import EnquiryModal from "./EnquiryModal";
 
 export default function EnquiryButton({
-  property
+  property,
+  variant = "small"
 }) {
 
   const [showForm, setShowForm] =
@@ -18,7 +19,6 @@ export default function EnquiryButton({
     const mobile =
       localStorage.getItem("mobile");
 
-    // SHOW ALERT IMMEDIATELY
     const useDifferent =
       window.confirm(
         `Your enquiry submitted successfully.
@@ -30,7 +30,6 @@ Press OK to continue.
 Press Cancel to use different number.`
       );
 
-    // SEND DATA IN BACKGROUND
     fetch(
       "https://script.google.com/macros/s/AKfycbxcqOS_Anq0urwwO2o-63Nt3QERJDXWxB2TFyx7XYJrwODVpx7ZIor7-fQ6OZ6k_cr5/exec",
       {
@@ -57,7 +56,6 @@ Press Cancel to use different number.`
 
     });
 
-    // USE DIFFERENT NUMBER
     if (!useDifferent) {
 
       localStorage.removeItem(
@@ -69,11 +67,11 @@ Press Cancel to use different number.`
       );
 
       setShowForm(true);
+
     }
 
   };
 
-  // OPEN ENQUIRY
   const openEnquiry = () => {
 
     const savedName =
@@ -82,7 +80,6 @@ Press Cancel to use different number.`
     const savedMobile =
       localStorage.getItem("mobile");
 
-    // USER ALREADY EXISTS
     if (
       savedName &&
       savedMobile
@@ -91,17 +88,15 @@ Press Cancel to use different number.`
       submitSavedLead();
 
       return;
+
     }
 
-    // OPEN FORM
     setShowForm(true);
+
   };
 
-  return (
-    <>
-      <button
-        onClick={openEnquiry}
-        className="
+  // SMALL BUTTON
+  const smallButtonClass = `
     bg-gradient-to-r
     from-emerald-500
     to-emerald-700
@@ -117,7 +112,36 @@ Press Cancel to use different number.`
     shadow-md
     transition
     duration-300
-  "
+  `;
+
+  // LARGE BUTTON
+  const largeButtonClass = `
+  flex-1
+  bg-gradient-to-r
+  from-emerald-500
+  to-emerald-700
+  hover:from-emerald-600
+  hover:to-emerald-800
+  text-white
+  text-sm
+  px-4
+  py-3
+  rounded-xl
+  font-semibold
+  shadow-lg
+  transition
+  duration-300
+`;
+
+  return (
+    <>
+      <button
+        onClick={openEnquiry}
+        className={
+          variant === "large"
+            ? largeButtonClass
+            : smallButtonClass
+        }
       >
         📞 Enquire
       </button>
