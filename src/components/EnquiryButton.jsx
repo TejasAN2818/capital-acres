@@ -102,18 +102,24 @@ Press Cancel to use different number.`
       <button
         onClick={openEnquiry}
         className="
-          bg-slate-900
-          hover:bg-slate-700
-          text-white
-          text-[10px]
-          px-2.5
-          py-1.5
-          rounded-md
-          font-semibold
-          whitespace-nowrap
-        "
+    bg-gradient-to-r
+    from-emerald-500
+    to-emerald-700
+    hover:from-emerald-600
+    hover:to-emerald-800
+    text-white
+    text-[10px]
+    px-2.5
+    py-1.5
+    rounded-md
+    font-semibold
+    whitespace-nowrap
+    shadow-md
+    transition
+    duration-300
+  "
       >
-        Enquiry
+        📞 Enquire
       </button>
 
       <EnquiryModal
