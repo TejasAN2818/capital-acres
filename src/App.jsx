@@ -116,35 +116,25 @@ export default function App() {
     if (items.length === 0)
       return null;
 
-    const isSingleView =
-      typeFilter !== "All";
-
     return (
 
-
-      <div className="px-2 py-5 md:px-8 flex justify-center">
+      <div className="px-3 md:px-6 py-5">
 
         {/* SECTION HEADER */}
-        <div className="flex items-center justify-between mb-5">
+        <div className="flex items-center justify-between mb-4">
 
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
             {title}s
           </h2>
 
-          <p className="text-sm md:text-base text-gray-500">
+          <p className="text-sm text-gray-500">
             {items.length} Properties
           </p>
 
         </div>
 
         {/* PROPERTY CARDS */}
-        <div
-          className={
-            isSingleView
-              ? "w-full max-w-[340px] sm:max-w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
-              : "w-full max-w-[340px] sm:max-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
-          }
-        >
+        <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
           {items.map((property) => (
 
@@ -184,10 +174,10 @@ export default function App() {
       </header>
 
       {/* FILTER + SEARCH MAIN CONTAINER */}
-      <div className="sticky top-[72px] z-40 px-3 py-3 bg-slate-100 flex justify-center">
+      <div className="sticky top-[72px] z-40 px-3 py-3 bg-slate-100">
 
         {/* MAIN CONTAINER */}
-        <div className="w-full max-w-[340px] sm:max-w-2xl md:max-w-5xl lg:max-w-7xl bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4">
+        <div className="w-full max-w-[340px] mx-auto sm:max-w-2xl md:max-w-5xl lg:max-w-7xl bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4">
 
           {/* SEARCH BAR */}
           <div className="w-full relative mb-3">
@@ -325,16 +315,15 @@ export default function App() {
 
           </div>
 
-
           {/* PROPERTY TYPE BUTTONS */}
           <div className="grid grid-cols-3 gap-2 mb-3">
 
-            {/* PLOTS */}
             <button
-              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Plot"
-                ? "bg-slate-900 text-white shadow-md"
-                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
-                }`}
+              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
+                typeFilter === "Plot"
+                  ? "bg-slate-900 text-white shadow-md"
+                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+              }`}
               onClick={() =>
                 setTypeFilter(
                   typeFilter === "Plot"
@@ -346,12 +335,12 @@ export default function App() {
               Plots
             </button>
 
-            {/* APARTMENTS */}
             <button
-              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Apartment"
-                ? "bg-slate-900 text-white shadow-md"
-                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
-                }`}
+              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
+                typeFilter === "Apartment"
+                  ? "bg-slate-900 text-white shadow-md"
+                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+              }`}
               onClick={() =>
                 setTypeFilter(
                   typeFilter === "Apartment"
@@ -363,12 +352,12 @@ export default function App() {
               Apartments
             </button>
 
-            {/* VILLAS */}
             <button
-              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Villa"
-                ? "bg-slate-900 text-white shadow-md"
-                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
-                }`}
+              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
+                typeFilter === "Villa"
+                  ? "bg-slate-900 text-white shadow-md"
+                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+              }`}
               onClick={() =>
                 setTypeFilter(
                   typeFilter === "Villa"
@@ -419,7 +408,6 @@ export default function App() {
 
               </select>
 
-              {/* DROPDOWN ICON */}
               <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-[9px] text-slate-500">
                 ▼
               </div>
@@ -464,7 +452,6 @@ export default function App() {
 
               </select>
 
-              {/* DROPDOWN ICON */}
               <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-[9px] text-slate-500">
                 ▼
               </div>
