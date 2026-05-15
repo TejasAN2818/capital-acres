@@ -9,40 +9,119 @@ import PropertyCard from "./components/PropertyCard";
 const properties = [...plots, ...apartments, ...villas];
 
 export default function App() {
-  const [typeFilter, setTypeFilter] = useState("All");
-  const [locationFilter, setLocationFilter] = useState("All");
-  const [priceFilter, setPriceFilter] = useState("All");
 
-  // Filter Properties
-  const filteredProperties = properties.filter((property) => {
-    const matchType =
-      typeFilter === "All" || property.type === typeFilter;
+  const [typeFilter, setTypeFilter] =
+    useState("All");
 
-    const matchLocation =
-      locationFilter === "All" ||
-      property.location === locationFilter;
+  const [locationFilter, setLocationFilter] =
+    useState("All");
 
-    const matchPrice =
-      priceFilter === "All" || property.price === priceFilter;
+  const [priceFilter, setPriceFilter] =
+    useState("All");
 
-    return matchType && matchLocation && matchPrice;
-  });
+  const [searchTerm, setSearchTerm] =
+    useState("");
 
-  // Render Property Sections
-  const renderSection = (title) => {
-    const items = filteredProperties.filter(
-      (property) => property.type === title
+  const [showSuggestions, setShowSuggestions] =
+    useState(false);
+
+  // SEARCH SUGGESTIONS
+  const projectSuggestions =
+    properties.filter((property) =>
+      (property.projectName || "")
+        .toLowerCase()
+        .startsWith(
+          searchTerm.toLowerCase()
+        )
     );
 
-    if (items.length === 0) return null;
+  const locationSuggestions =
+    properties.filter((property) =>
+      (property.location || "")
+        .toLowerCase()
+        .startsWith(
+          searchTerm.toLowerCase()
+        )
+    );
 
-    const isSingleView = typeFilter !== "All";
+  // FILTER PROPERTIES
+  const filteredProperties =
+    properties.filter((property) => {
+
+      // TYPE FILTER
+      const matchType =
+        typeFilter === "All" ||
+        property.type === typeFilter;
+
+      // LOCATION FILTER
+      const matchLocation =
+        locationFilter === "All" ||
+        property.location === locationFilter;
+
+      // PRICE FILTER
+      const propertyPrice =
+        parseInt(
+          (property.pricePerSqft || "")
+            .replace("₹", "")
+            .replace("/sqft", "")
+        );
+
+      const selectedPrice =
+        parseInt(
+          priceFilter.replace("₹", "")
+        );
+
+      const matchPrice =
+        priceFilter === "All" ||
+        propertyPrice <= selectedPrice;
+
+      // SEARCH FILTER
+      const matchSearch =
+
+        searchTerm === "" ||
+
+        (property.projectName || "")
+          .toLowerCase()
+          .includes(
+            searchTerm.toLowerCase()
+          ) ||
+
+        (property.location || "")
+          .toLowerCase()
+          .includes(
+            searchTerm.toLowerCase()
+          );
+
+      return (
+        matchType &&
+        matchLocation &&
+        matchPrice &&
+        matchSearch
+      );
+    });
+
+  // RENDER SECTION
+  const renderSection = (title) => {
+
+    const items =
+      filteredProperties.filter(
+        (property) =>
+          property.type === title
+      );
+
+    if (items.length === 0)
+      return null;
+
+    const isSingleView =
+      typeFilter !== "All";
 
     return (
+
       <div className="px-4 md:px-8 py-8">
-        
-        {/* Section Heading */}
+
+        {/* SECTION HEADER */}
         <div className="flex items-center justify-between mb-6">
+
           <h2 className="text-3xl font-bold text-slate-800">
             {title}s
           </h2>
@@ -50,9 +129,10 @@ export default function App() {
           <p className="text-gray-500">
             {items.length} Properties
           </p>
+
         </div>
 
-        {/* Cards */}
+        {/* PROPERTY CARDS */}
         <div
           className={
             isSingleView
@@ -60,21 +140,27 @@ export default function App() {
               : "flex gap-6 overflow-x-auto pb-4"
           }
         >
+
           {items.map((property) => (
+
             <PropertyCard
               key={property.id}
               property={property}
             />
+
           ))}
+
         </div>
+
       </div>
     );
   };
 
   return (
+
     <div className="min-h-screen bg-slate-100">
 
-      {/* Header */}
+      {/* HEADER */}
       <header className="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
 
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between">
@@ -91,11 +177,12 @@ export default function App() {
 
       </header>
 
-      {/* Type Buttons */}
+      {/* TYPE FILTER BUTTONS */}
       <div className="bg-white shadow-sm">
 
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-wrap justify-center gap-4">
 
+          {/* PLOTS */}
           <button
             className={`px-6 py-3 rounded-xl font-semibold transition duration-300 ${
               typeFilter === "Plot"
@@ -113,6 +200,7 @@ export default function App() {
             Plots
           </button>
 
+          {/* APARTMENTS */}
           <button
             className={`px-6 py-3 rounded-xl font-semibold transition duration-300 ${
               typeFilter === "Apartment"
@@ -130,6 +218,7 @@ export default function App() {
             Apartments
           </button>
 
+          {/* VILLAS */}
           <button
             className={`px-6 py-3 rounded-xl font-semibold transition duration-300 ${
               typeFilter === "Villa"
@@ -151,85 +240,233 @@ export default function App() {
 
       </div>
 
-      {/* Filters */}
+      {/* FILTER SECTION */}
       <div className="bg-white border-t border-gray-200 shadow-sm">
 
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-wrap justify-center gap-4">
+        <div className="max-w-7xl mx-auto px-4 py-5">
 
-          {/* Location Filter */}
-          <select
-            className="px-4 py-3 rounded-xl border border-gray-300 min-w-[220px] bg-white outline-none focus:ring-2 focus:ring-slate-400"
-            onChange={(e) =>
-              setLocationFilter(e.target.value)
-            }
-          >
-            <option value="All">
-              All Locations
-            </option>
+          {/* SEARCH BAR */}
+          <div className="w-full flex justify-center mb-5 relative">
 
-            <option value="Bangalore">
-              Bangalore
-            </option>
+            <div className="w-full max-w-3xl relative">
 
-            <option value="Mysore">
-              Mysore
-            </option>
+              <input
+                type="text"
+                placeholder="Search by project name or location"
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(
+                    e.target.value
+                  );
+                  setShowSuggestions(true);
+                }}
+                onFocus={() =>
+                  setShowSuggestions(true)
+                }
+                className="w-full px-5 py-3 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-slate-400"
+              />
 
-            <option value="Hyderabad">
-              Hyderabad
-            </option>
+              {/* SEARCH DROPDOWN */}
+{showSuggestions &&
+  searchTerm && (
 
-            <option value="Chennai">
-              Chennai
-            </option>
-          </select>
+    <div className="absolute top-16 left-0 w-full bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 overflow-hidden">
 
-          {/* Price Filter */}
-          <select
-            className="px-4 py-3 rounded-xl border border-gray-300 min-w-[220px] bg-white outline-none focus:ring-2 focus:ring-slate-400"
-            onChange={(e) =>
-              setPriceFilter(e.target.value)
-            }
-          >
-            <option value="All">
-              All Prices
-            </option>
+      <div className="grid grid-cols-1 md:grid-cols-2">
 
-            <option value="35L">
-              35L
-            </option>
+        {/* LEFT SIDE - PROJECTS */}
+        <div className="p-4 border-r border-gray-200">
 
-            <option value="50L">
-              50L
-            </option>
+          <h3 className="text-sm font-bold text-slate-700 mb-4">
+            Project Names
+          </h3>
 
-            <option value="75L">
-              75L
-            </option>
+          <div className="space-y-1 max-h-[350px] overflow-y-auto">
 
-            <option value="1Cr">
-              1Cr
-            </option>
+            {projectSuggestions.length > 0 ? (
 
-            <option value="1.5Cr">
-              1.5Cr
-            </option>
+              projectSuggestions.map(
+                (property) => (
 
-            <option value="2Cr">
-              2Cr
-            </option>
+                  <div
+                    key={property.id}
+                    className="px-4 py-3 rounded-xl hover:bg-slate-100 cursor-pointer transition"
+                    onClick={() => {
+                      setSearchTerm(
+                        property.projectName
+                      );
+                      setShowSuggestions(
+                        false
+                      );
+                    }}
+                  >
 
-            <option value="2.5Cr">
-              2.5Cr
-            </option>
-          </select>
+                    <p className="font-medium text-slate-800">
+                      {property.projectName}
+                    </p>
+
+                    <p className="text-sm text-gray-500">
+                      {property.location}
+                    </p>
+
+                  </div>
+
+                )
+              )
+
+            ) : (
+
+              <p className="text-sm text-gray-400">
+                No Projects Found
+              </p>
+
+            )}
+
+          </div>
+
+        </div>
+
+        {/* RIGHT SIDE - LOCATIONS */}
+        <div className="p-4">
+
+          <h3 className="text-sm font-bold text-slate-700 mb-4">
+            Locations
+          </h3>
+
+          <div className="space-y-1 max-h-[350px] overflow-y-auto">
+
+            {locationSuggestions.length > 0 ? (
+
+              [
+                ...new Set(
+                  locationSuggestions.map(
+                    (item) =>
+                      item.location
+                  )
+                )
+              ].map((location) => (
+
+                <div
+                  key={location}
+                  className="px-4 py-3 rounded-xl hover:bg-slate-100 cursor-pointer transition"
+                  onClick={() => {
+                    setSearchTerm(
+                      location
+                    );
+                    setShowSuggestions(
+                      false
+                    );
+                  }}
+                >
+
+                  <p className="font-medium text-slate-800">
+                    {location}
+                  </p>
+
+                </div>
+
+              ))
+
+            ) : (
+
+              <p className="text-sm text-gray-400">
+                No Locations Found
+              </p>
+
+            )}
+
+          </div>
 
         </div>
 
       </div>
 
-      {/* Sections */}
+    </div>
 
+  )}
+
+            </div>
+
+          </div>
+
+          {/* FILTER DROPDOWNS */}
+          <div className="flex flex-wrap justify-center gap-4">
+
+            {/* LOCATION FILTER */}
+            <select
+              className="px-4 py-3 rounded-xl border border-gray-300 min-w-[220px] bg-white outline-none focus:ring-2 focus:ring-slate-400"
+              onChange={(e) =>
+                setLocationFilter(
+                  e.target.value
+                )
+              }
+            >
+
+              <option value="All">
+                All Locations
+              </option>
+
+              <option value="Bangalore">
+                Bangalore
+              </option>
+
+              <option value="Mysore">
+                Mysore
+              </option>
+
+              <option value="Hyderabad">
+                Hyderabad
+              </option>
+
+              <option value="Chennai">
+                Chennai
+              </option>
+
+            </select>
+
+            {/* PRICE FILTER */}
+            <select
+              className="px-4 py-3 rounded-xl border border-gray-300 min-w-[220px] bg-white outline-none focus:ring-2 focus:ring-slate-400"
+              onChange={(e) =>
+                setPriceFilter(
+                  e.target.value
+                )
+              }
+            >
+
+              <option value="All">
+                Max Sqft Price
+              </option>
+
+              <option value="₹2500">
+                Below ₹2500 / sqft
+              </option>
+
+              <option value="₹3500">
+                Below ₹3500 / sqft
+              </option>
+
+              <option value="₹4500">
+                Below ₹4500 / sqft
+              </option>
+
+              <option value="₹5500">
+                Below ₹5500 / sqft
+              </option>
+
+              <option value="₹6500">
+                Below ₹6500 / sqft
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* PROPERTY SECTIONS */}
       {(typeFilter === "All" ||
         typeFilter === "Plot") &&
         renderSection("Plot")}
@@ -242,8 +479,7 @@ export default function App() {
         typeFilter === "Villa") &&
         renderSection("Villa")}
 
-      {/* Footer */}
-
+      {/* FOOTER */}
       <footer className="bg-slate-900 text-white mt-12">
 
         <div className="max-w-7xl mx-auto px-4 py-8 text-center">
@@ -257,7 +493,8 @@ export default function App() {
           </p>
 
           <p className="text-slate-500 text-sm mt-6">
-            © 2026 Capital Acres. All rights reserved.
+            © 2026 Capital Acres.
+            All rights reserved.
           </p>
 
         </div>
