@@ -6,7 +6,11 @@ import villas from "./data/Villas";
 
 import PropertyCard from "./components/PropertyCard";
 
-const properties = [...plots, ...apartments, ...villas];
+const properties = [
+  ...plots,
+  ...apartments,
+  ...villas
+];
 
 export default function App() {
 
@@ -100,7 +104,7 @@ export default function App() {
       );
     });
 
-  // RENDER SECTION
+  // RENDER PROPERTY SECTION
   const renderSection = (title) => {
 
     const items =
@@ -153,6 +157,7 @@ export default function App() {
         </div>
 
       </div>
+
     );
   };
 
@@ -177,13 +182,13 @@ export default function App() {
 
       </header>
 
-      {/* FILTER + SEARCH SECTION */}
-      <div className="bg-white border-t border-gray-200 shadow-sm sticky top-[72px] z-40">
+      {/* FILTER + SEARCH MAIN CONTAINER */}
+      <div className="sticky top-[72px] z-40 px-3 md:px-5 py-4 bg-slate-100">
 
-        <div className="max-w-7xl mx-auto px-3 md:px-4 py-4">
+        <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-lg border border-gray-200 p-4 md:p-5">
 
-          {/* SEARCH BAR */}
-          <div className="w-full mb-4 relative">
+          {/* SEARCH CONTAINER */}
+          <div className="bg-slate-50 border border-gray-200 rounded-2xl p-3 md:p-4 mb-4">
 
             <div className="w-full relative">
 
@@ -200,7 +205,7 @@ export default function App() {
                 onFocus={() =>
                   setShowSuggestions(true)
                 }
-                className="w-full px-4 py-3 text-sm md:text-base rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-slate-400"
+                className="w-full px-4 py-3 text-sm md:text-base rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
               />
 
               {/* SEARCH DROPDOWN */}
@@ -322,135 +327,143 @@ export default function App() {
 
           </div>
 
-          {/* TYPE BUTTONS */}
-          <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+          {/* PROPERTY TYPE CONTAINER */}
+          <div className="bg-slate-50 border border-gray-200 rounded-2xl p-3 md:p-4 mb-4">
 
-            {/* PLOTS */}
-            <button
-              className={`px-4 py-2 text-sm rounded-xl whitespace-nowrap font-medium transition ${
-                typeFilter === "Plot"
-                  ? "bg-slate-900 text-white"
-                  : "bg-slate-200 hover:bg-slate-300"
-              }`}
-              onClick={() =>
-                setTypeFilter(
+            <div className="flex gap-3 overflow-x-auto">
+
+              {/* PLOTS */}
+              <button
+                className={`px-5 py-2.5 text-sm rounded-xl whitespace-nowrap font-medium transition ${
                   typeFilter === "Plot"
-                    ? "All"
-                    : "Plot"
-                )
-              }
-            >
-              Plots
-            </button>
+                    ? "bg-slate-900 text-white shadow-md"
+                    : "bg-white border border-gray-200 hover:bg-slate-100"
+                }`}
+                onClick={() =>
+                  setTypeFilter(
+                    typeFilter === "Plot"
+                      ? "All"
+                      : "Plot"
+                  )
+                }
+              >
+                Plots
+              </button>
 
-            {/* APARTMENTS */}
-            <button
-              className={`px-4 py-2 text-sm rounded-xl whitespace-nowrap font-medium transition ${
-                typeFilter === "Apartment"
-                  ? "bg-slate-900 text-white"
-                  : "bg-slate-200 hover:bg-slate-300"
-              }`}
-              onClick={() =>
-                setTypeFilter(
+              {/* APARTMENTS */}
+              <button
+                className={`px-5 py-2.5 text-sm rounded-xl whitespace-nowrap font-medium transition ${
                   typeFilter === "Apartment"
-                    ? "All"
-                    : "Apartment"
-                )
-              }
-            >
-              Apartments
-            </button>
+                    ? "bg-slate-900 text-white shadow-md"
+                    : "bg-white border border-gray-200 hover:bg-slate-100"
+                }`}
+                onClick={() =>
+                  setTypeFilter(
+                    typeFilter === "Apartment"
+                      ? "All"
+                      : "Apartment"
+                  )
+                }
+              >
+                Apartments
+              </button>
 
-            {/* VILLAS */}
-            <button
-              className={`px-4 py-2 text-sm rounded-xl whitespace-nowrap font-medium transition ${
-                typeFilter === "Villa"
-                  ? "bg-slate-900 text-white"
-                  : "bg-slate-200 hover:bg-slate-300"
-              }`}
-              onClick={() =>
-                setTypeFilter(
+              {/* VILLAS */}
+              <button
+                className={`px-5 py-2.5 text-sm rounded-xl whitespace-nowrap font-medium transition ${
                   typeFilter === "Villa"
-                    ? "All"
-                    : "Villa"
-                )
-              }
-            >
-              Villas
-            </button>
+                    ? "bg-slate-900 text-white shadow-md"
+                    : "bg-white border border-gray-200 hover:bg-slate-100"
+                }`}
+                onClick={() =>
+                  setTypeFilter(
+                    typeFilter === "Villa"
+                      ? "All"
+                      : "Villa"
+                  )
+                }
+              >
+                Villas
+              </button>
+
+            </div>
 
           </div>
 
-          {/* FILTER DROPDOWNS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {/* FILTER CONTAINER */}
+          <div className="bg-slate-50 border border-gray-200 rounded-2xl p-3 md:p-4">
 
-            {/* LOCATION FILTER */}
-            <select
-              className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
-              onChange={(e) =>
-                setLocationFilter(
-                  e.target.value
-                )
-              }
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
-              <option value="All">
-                All Locations
-              </option>
+              {/* LOCATION FILTER */}
+              <select
+                className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
+                onChange={(e) =>
+                  setLocationFilter(
+                    e.target.value
+                  )
+                }
+              >
 
-              <option value="Bangalore">
-                Bangalore
-              </option>
+                <option value="All">
+                  All Locations
+                </option>
 
-              <option value="Mysore">
-                Mysore
-              </option>
+                <option value="Bangalore">
+                  Bangalore
+                </option>
 
-              <option value="Hyderabad">
-                Hyderabad
-              </option>
+                <option value="Mysore">
+                  Mysore
+                </option>
 
-              <option value="Chennai">
-                Chennai
-              </option>
+                <option value="Hyderabad">
+                  Hyderabad
+                </option>
 
-            </select>
+                <option value="Chennai">
+                  Chennai
+                </option>
 
-            {/* PRICE FILTER */}
-            <select
-              className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
-              onChange={(e) =>
-                setPriceFilter(
-                  e.target.value
-                )
-              }
-            >
+              </select>
 
-              <option value="All">
-                Max Sqft Price
-              </option>
+              {/* PRICE FILTER */}
+              <select
+                className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
+                onChange={(e) =>
+                  setPriceFilter(
+                    e.target.value
+                  )
+                }
+              >
 
-              <option value="₹2500">
-                Below ₹2500 / sqft
-              </option>
+                <option value="All">
+                  Max Sqft Price
+                </option>
 
-              <option value="₹3500">
-                Below ₹3500 / sqft
-              </option>
+                <option value="₹2500">
+                  Below ₹2500 / sqft
+                </option>
 
-              <option value="₹4500">
-                Below ₹4500 / sqft
-              </option>
+                <option value="₹3500">
+                  Below ₹3500 / sqft
+                </option>
 
-              <option value="₹5500">
-                Below ₹5500 / sqft
-              </option>
+                <option value="₹4500">
+                  Below ₹4500 / sqft
+                </option>
 
-              <option value="₹6500">
-                Below ₹6500 / sqft
-              </option>
+                <option value="₹5500">
+                  Below ₹5500 / sqft
+                </option>
 
-            </select>
+                <option value="₹6500">
+                  Below ₹6500 / sqft
+                </option>
+
+              </select>
+
+            </div>
 
           </div>
 
@@ -494,5 +507,6 @@ export default function App() {
       </footer>
 
     </div>
+
   );
 }
