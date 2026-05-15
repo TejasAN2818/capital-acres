@@ -117,16 +117,16 @@ export default function App() {
 
     return (
 
-      <div className="px-4 md:px-8 py-8">
+      <div className="px-3 md:px-8 py-6">
 
         {/* SECTION HEADER */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-5">
 
-          <h2 className="text-3xl font-bold text-slate-800">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
             {title}s
           </h2>
 
-          <p className="text-gray-500">
+          <p className="text-sm md:text-base text-gray-500">
             {items.length} Properties
           </p>
 
@@ -136,8 +136,8 @@ export default function App() {
         <div
           className={
             isSingleView
-              ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
-              : "flex gap-6 overflow-x-auto pb-4"
+              ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
+              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
           }
         >
 
@@ -163,13 +163,13 @@ export default function App() {
       {/* HEADER */}
       <header className="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
 
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
 
-          <h1 className="text-4xl font-extrabold tracking-wide">
+          <h1 className="text-2xl md:text-4xl font-extrabold tracking-wide text-center md:text-left">
             CAPITAL ACRES
           </h1>
 
-          <p className="text-slate-300 mt-2 md:mt-0">
+          <p className="text-slate-300 text-sm md:text-base mt-1 md:mt-0 text-center">
             Premium Plots • Apartments • Villas
           </p>
 
@@ -177,82 +177,19 @@ export default function App() {
 
       </header>
 
-      {/* TYPE FILTER BUTTONS */}
-      <div className="bg-white shadow-sm">
+      {/* FILTER + SEARCH SECTION */}
+      <div className="bg-white border-t border-gray-200 shadow-sm sticky top-[72px] z-40">
 
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-wrap justify-center gap-4">
-
-          {/* PLOTS */}
-          <button
-            className={`px-6 py-3 rounded-xl font-semibold transition duration-300 ${
-              typeFilter === "Plot"
-                ? "bg-slate-900 text-white shadow-lg"
-                : "bg-slate-200 hover:bg-slate-300"
-            }`}
-            onClick={() =>
-              setTypeFilter(
-                typeFilter === "Plot"
-                  ? "All"
-                  : "Plot"
-              )
-            }
-          >
-            Plots
-          </button>
-
-          {/* APARTMENTS */}
-          <button
-            className={`px-6 py-3 rounded-xl font-semibold transition duration-300 ${
-              typeFilter === "Apartment"
-                ? "bg-slate-900 text-white shadow-lg"
-                : "bg-slate-200 hover:bg-slate-300"
-            }`}
-            onClick={() =>
-              setTypeFilter(
-                typeFilter === "Apartment"
-                  ? "All"
-                  : "Apartment"
-              )
-            }
-          >
-            Apartments
-          </button>
-
-          {/* VILLAS */}
-          <button
-            className={`px-6 py-3 rounded-xl font-semibold transition duration-300 ${
-              typeFilter === "Villa"
-                ? "bg-slate-900 text-white shadow-lg"
-                : "bg-slate-200 hover:bg-slate-300"
-            }`}
-            onClick={() =>
-              setTypeFilter(
-                typeFilter === "Villa"
-                  ? "All"
-                  : "Villa"
-              )
-            }
-          >
-            Villas
-          </button>
-
-        </div>
-
-      </div>
-
-      {/* FILTER SECTION */}
-      <div className="bg-white border-t border-gray-200 shadow-sm">
-
-        <div className="max-w-7xl mx-auto px-4 py-5">
+        <div className="max-w-7xl mx-auto px-3 md:px-4 py-4">
 
           {/* SEARCH BAR */}
-          <div className="w-full flex justify-center mb-5 relative">
+          <div className="w-full mb-4 relative">
 
-            <div className="w-full max-w-3xl relative">
+            <div className="w-full relative">
 
               <input
                 type="text"
-                placeholder="Search by project name or location"
+                placeholder="Search projects or locations"
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(
@@ -263,138 +200,193 @@ export default function App() {
                 onFocus={() =>
                   setShowSuggestions(true)
                 }
-                className="w-full px-5 py-3 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-slate-400"
+                className="w-full px-4 py-3 text-sm md:text-base rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-slate-400"
               />
 
               {/* SEARCH DROPDOWN */}
-{showSuggestions &&
-  searchTerm && (
+              {showSuggestions &&
+                searchTerm && (
 
-    <div className="absolute top-16 left-0 w-full bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 overflow-hidden">
+                  <div className="absolute top-14 left-0 w-full bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 overflow-hidden">
 
-      <div className="grid grid-cols-1 md:grid-cols-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2">
 
-        {/* LEFT SIDE - PROJECTS */}
-        <div className="p-4 border-r border-gray-200">
+                      {/* PROJECTS */}
+                      <div className="p-3 md:p-4 border-b md:border-b-0 md:border-r border-gray-200">
 
-          <h3 className="text-sm font-bold text-slate-700 mb-4">
-            Project Names
-          </h3>
+                        <h3 className="text-sm font-bold text-slate-700 mb-3">
+                          Project Names
+                        </h3>
 
-          <div className="space-y-1 max-h-[350px] overflow-y-auto">
+                        <div className="space-y-1 max-h-[250px] overflow-y-auto">
 
-            {projectSuggestions.length > 0 ? (
+                          {projectSuggestions.length > 0 ? (
 
-              projectSuggestions.map(
-                (property) => (
+                            projectSuggestions.map(
+                              (property) => (
 
-                  <div
-                    key={property.id}
-                    className="px-4 py-3 rounded-xl hover:bg-slate-100 cursor-pointer transition"
-                    onClick={() => {
-                      setSearchTerm(
-                        property.projectName
-                      );
-                      setShowSuggestions(
-                        false
-                      );
-                    }}
-                  >
+                                <div
+                                  key={property.id}
+                                  className="px-3 py-2 rounded-xl hover:bg-slate-100 cursor-pointer transition"
+                                  onClick={() => {
+                                    setSearchTerm(
+                                      property.projectName
+                                    );
+                                    setShowSuggestions(false);
+                                  }}
+                                >
 
-                    <p className="font-medium text-slate-800">
-                      {property.projectName}
-                    </p>
+                                  <p className="font-medium text-sm text-slate-800">
+                                    {property.projectName}
+                                  </p>
 
-                    <p className="text-sm text-gray-500">
-                      {property.location}
-                    </p>
+                                  <p className="text-xs text-gray-500">
+                                    {property.location}
+                                  </p>
+
+                                </div>
+
+                              )
+                            )
+
+                          ) : (
+
+                            <p className="text-sm text-gray-400">
+                              No Projects Found
+                            </p>
+
+                          )}
+
+                        </div>
+
+                      </div>
+
+                      {/* LOCATIONS */}
+                      <div className="p-3 md:p-4">
+
+                        <h3 className="text-sm font-bold text-slate-700 mb-3">
+                          Locations
+                        </h3>
+
+                        <div className="space-y-1 max-h-[250px] overflow-y-auto">
+
+                          {locationSuggestions.length > 0 ? (
+
+                            [
+                              ...new Set(
+                                locationSuggestions.map(
+                                  (item) =>
+                                    item.location
+                                )
+                              )
+                            ].map((location) => (
+
+                              <div
+                                key={location}
+                                className="px-3 py-2 rounded-xl hover:bg-slate-100 cursor-pointer transition"
+                                onClick={() => {
+                                  setSearchTerm(
+                                    location
+                                  );
+                                  setShowSuggestions(false);
+                                }}
+                              >
+
+                                <p className="font-medium text-sm text-slate-800">
+                                  {location}
+                                </p>
+
+                              </div>
+
+                            ))
+
+                          ) : (
+
+                            <p className="text-sm text-gray-400">
+                              No Locations Found
+                            </p>
+
+                          )}
+
+                        </div>
+
+                      </div>
+
+                    </div>
 
                   </div>
 
-                )
-              )
-
-            ) : (
-
-              <p className="text-sm text-gray-400">
-                No Projects Found
-              </p>
-
-            )}
-
-          </div>
-
-        </div>
-
-        {/* RIGHT SIDE - LOCATIONS */}
-        <div className="p-4">
-
-          <h3 className="text-sm font-bold text-slate-700 mb-4">
-            Locations
-          </h3>
-
-          <div className="space-y-1 max-h-[350px] overflow-y-auto">
-
-            {locationSuggestions.length > 0 ? (
-
-              [
-                ...new Set(
-                  locationSuggestions.map(
-                    (item) =>
-                      item.location
-                  )
-                )
-              ].map((location) => (
-
-                <div
-                  key={location}
-                  className="px-4 py-3 rounded-xl hover:bg-slate-100 cursor-pointer transition"
-                  onClick={() => {
-                    setSearchTerm(
-                      location
-                    );
-                    setShowSuggestions(
-                      false
-                    );
-                  }}
-                >
-
-                  <p className="font-medium text-slate-800">
-                    {location}
-                  </p>
-
-                </div>
-
-              ))
-
-            ) : (
-
-              <p className="text-sm text-gray-400">
-                No Locations Found
-              </p>
-
-            )}
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  )}
+                )}
 
             </div>
 
           </div>
 
+          {/* TYPE BUTTONS */}
+          <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+
+            {/* PLOTS */}
+            <button
+              className={`px-4 py-2 text-sm rounded-xl whitespace-nowrap font-medium transition ${
+                typeFilter === "Plot"
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-200 hover:bg-slate-300"
+              }`}
+              onClick={() =>
+                setTypeFilter(
+                  typeFilter === "Plot"
+                    ? "All"
+                    : "Plot"
+                )
+              }
+            >
+              Plots
+            </button>
+
+            {/* APARTMENTS */}
+            <button
+              className={`px-4 py-2 text-sm rounded-xl whitespace-nowrap font-medium transition ${
+                typeFilter === "Apartment"
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-200 hover:bg-slate-300"
+              }`}
+              onClick={() =>
+                setTypeFilter(
+                  typeFilter === "Apartment"
+                    ? "All"
+                    : "Apartment"
+                )
+              }
+            >
+              Apartments
+            </button>
+
+            {/* VILLAS */}
+            <button
+              className={`px-4 py-2 text-sm rounded-xl whitespace-nowrap font-medium transition ${
+                typeFilter === "Villa"
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-200 hover:bg-slate-300"
+              }`}
+              onClick={() =>
+                setTypeFilter(
+                  typeFilter === "Villa"
+                    ? "All"
+                    : "Villa"
+                )
+              }
+            >
+              Villas
+            </button>
+
+          </div>
+
           {/* FILTER DROPDOWNS */}
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
 
             {/* LOCATION FILTER */}
             <select
-              className="px-4 py-3 rounded-xl border border-gray-300 min-w-[220px] bg-white outline-none focus:ring-2 focus:ring-slate-400"
+              className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
               onChange={(e) =>
                 setLocationFilter(
                   e.target.value
@@ -426,7 +418,7 @@ export default function App() {
 
             {/* PRICE FILTER */}
             <select
-              className="px-4 py-3 rounded-xl border border-gray-300 min-w-[220px] bg-white outline-none focus:ring-2 focus:ring-slate-400"
+              className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
               onChange={(e) =>
                 setPriceFilter(
                   e.target.value
@@ -480,19 +472,19 @@ export default function App() {
         renderSection("Villa")}
 
       {/* FOOTER */}
-      <footer className="bg-slate-900 text-white mt-12">
+      <footer className="bg-slate-900 text-white mt-10">
 
         <div className="max-w-7xl mx-auto px-4 py-8 text-center">
 
-          <h2 className="text-2xl font-bold">
+          <h2 className="text-xl md:text-2xl font-bold">
             CAPITAL ACRES
           </h2>
 
-          <p className="text-slate-400 mt-3">
+          <p className="text-slate-400 text-sm md:text-base mt-3">
             Find your dream property with us.
           </p>
 
-          <p className="text-slate-500 text-sm mt-6">
+          <p className="text-slate-500 text-xs md:text-sm mt-6">
             © 2026 Capital Acres.
             All rights reserved.
           </p>
