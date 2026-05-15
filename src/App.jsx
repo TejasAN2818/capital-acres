@@ -5,6 +5,7 @@ import apartments from "./data/Apartments";
 import villas from "./data/Villas";
 
 import PropertyCard from "./components/PropertyCard";
+import PostPropertyModal from "./components/PostPropertyModal";
 
 const properties = [
   ...plots,
@@ -28,6 +29,9 @@ export default function App() {
 
   const [showSuggestions, setShowSuggestions] =
     useState(false);
+
+  const [showPostModal, setShowPostModal] =
+  useState(false);
 
   // SEARCH SUGGESTIONS
   const projectSuggestions =
@@ -116,12 +120,16 @@ export default function App() {
     if (items.length === 0)
       return null;
 
+    // CHECK IF ANY TYPE SELECTED
+    const isSingleView =
+      typeFilter !== "All";
+
     return (
 
-      <div className="px-3 md:px-6 py-5">
+      <div className="py-5">
 
         {/* SECTION HEADER */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between px-3 md:px-6 mb-4">
 
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
             {title}s
@@ -133,19 +141,63 @@ export default function App() {
 
         </div>
 
-        {/* PROPERTY CARDS */}
-        <div className="flex flex-col items-center gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {/* DEFAULT VIEW = HORIZONTAL */}
+        {!isSingleView ? (
 
-          {items.map((property) => (
+          <div className="
+          flex
+          gap-4
+          overflow-x-auto
+          px-3
+          md:px-6
+          pb-2
+          scrollbar-hide
+        ">
 
-            <PropertyCard
-              key={property.id}
-              property={property}
-            />
+            {items.map((property) => (
 
-          ))}
+              <div
+                key={property.id}
+                className="flex-shrink-0"
+              >
 
-        </div>
+                <PropertyCard
+                  property={property}
+                />
+
+              </div>
+
+            ))}
+
+          </div>
+
+        ) : (
+
+          /* SELECTED VIEW = VERTICAL */
+          <div className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          xl:grid-cols-4
+          gap-4
+          place-items-center
+          px-3
+          md:px-6
+        ">
+
+            {items.map((property) => (
+
+              <PropertyCard
+                key={property.id}
+                property={property}
+              />
+
+            ))}
+
+          </div>
+
+        )}
 
       </div>
 
@@ -157,27 +209,85 @@ export default function App() {
     <div className="min-h-screen bg-slate-100">
 
       {/* HEADER */}
-      <header className="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+      <header className="bg-slate-950 text-white border-b border-slate-800">
 
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
+        <div className="flex items-center justify-between px-3 md:px-6 h-14">
 
-          <h1 className="text-2xl md:text-4xl font-extrabold tracking-wide text-center md:text-left">
-            CAPITAL ACRES
-          </h1>
+          {/* WEBSITE NAME */}
+          <div className="flex flex-col leading-none">
 
-          <p className="text-slate-300 text-sm md:text-base mt-1 md:mt-0 text-center">
-            Premium Plots • Apartments • Villas
-          </p>
+            <h1 className="text-xl md:text-2xl font-black tracking-wider text-white">
+
+              CAPITAL
+
+              <span className="text-emerald-400 ml-1">
+                ACRES
+              </span>
+
+            </h1>
+
+            <p className="text-[9px] md:text-[10px] tracking-[3px] text-slate-400 mt-1 uppercase">
+              Premium Properties
+            </p>
+
+          </div>
+
+          {/* POST PROPERTY BUTTON */}
+<button
+  onClick={() =>
+    setShowPostModal(true)
+  }
+  className="
+    relative
+    h-6
+    px-2
+    rounded-xl
+    bg-white
+    text-slate-900
+    text-[11px]
+    font-bold
+    shadow-md
+    hover:scale-105
+    active:scale-95
+    transition-all
+    duration-300
+    border
+    border-slate-200
+  "
+>
+
+  Post Property
+
+  {/* FREE TAG */}
+  <span
+    className="
+      absolute
+      -top-1
+      -right-1
+      bg-orange-500
+      text-black
+      text-[7px]
+      px-1.5
+      py-[1px]
+      rounded-full
+      font-semibold
+      shadow
+    "
+  >
+    FREE
+  </span>
+
+</button>
 
         </div>
 
       </header>
 
       {/* FILTER + SEARCH MAIN CONTAINER */}
-      <div className="sticky top-[72px] z-40 px-3 py-3 bg-slate-100">
+      <div className="sticky top-0 z-40 bg-slate-100">
 
         {/* MAIN CONTAINER */}
-        <div className="w-full max-w-[340px] mx-auto sm:max-w-2xl md:max-w-5xl lg:max-w-7xl bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4">
+        <div className="w-full bg-white/95 backdrop-blur shadow-sm border-b border-gray-200 px-3 py-2 md:px-4 md:py-3">
 
           {/* SEARCH BAR */}
           <div className="w-full relative mb-3">
@@ -316,14 +426,13 @@ export default function App() {
           </div>
 
           {/* PROPERTY TYPE BUTTONS */}
-          <div className="grid grid-cols-3 gap-2 mb-3">
+          <div className="grid grid-cols-3 gap-2 mb-3 ">
 
             <button
-              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
-                typeFilter === "Plot"
-                  ? "bg-slate-900 text-white shadow-md"
-                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
-              }`}
+              className={`h-7 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Plot"
+                ? "bg-slate-900 text-white shadow-md"
+                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+                }`}
               onClick={() =>
                 setTypeFilter(
                   typeFilter === "Plot"
@@ -336,11 +445,10 @@ export default function App() {
             </button>
 
             <button
-              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
-                typeFilter === "Apartment"
-                  ? "bg-slate-900 text-white shadow-md"
-                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
-              }`}
+              className={`h-7 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Apartment"
+                ? "bg-slate-900 text-white shadow-md"
+                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+                }`}
               onClick={() =>
                 setTypeFilter(
                   typeFilter === "Apartment"
@@ -353,11 +461,10 @@ export default function App() {
             </button>
 
             <button
-              className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${
-                typeFilter === "Villa"
-                  ? "bg-slate-900 text-white shadow-md"
-                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
-              }`}
+              className={`h-7 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Villa"
+                ? "bg-slate-900 text-white shadow-md"
+                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+                }`}
               onClick={() =>
                 setTypeFilter(
                   typeFilter === "Villa"
@@ -476,6 +583,17 @@ export default function App() {
       {(typeFilter === "All" ||
         typeFilter === "Villa") &&
         renderSection("Villa")}
+
+      {/* POST PROPERTY MODAL */}
+{showPostModal && (
+
+  <PostPropertyModal
+    closeModal={() =>
+      setShowPostModal(false)
+    }
+  />
+
+)}
 
       {/* FOOTER */}
       <footer className="bg-slate-900 text-white mt-10">
