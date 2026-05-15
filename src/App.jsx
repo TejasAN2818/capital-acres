@@ -186,7 +186,7 @@ export default function App() {
         <div className="sticky top-[72px] z-40 px-3 py-3 bg-slate-100 flex justify-center">
 
         {/* MAIN CONTAINER */}
-        <div className="w-full max-w-[340px] sm:max-w-2xl md:max-w-5xl lg:max-w-7xl bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4"></div>
+        <div className="w-full max-w-[340px] sm:max-w-2xl md:max-w-5xl lg:max-w-7xl bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4">
 
           {/* SEARCH BAR */}
           <div className="w-full relative mb-3">
