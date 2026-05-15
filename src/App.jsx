@@ -183,293 +183,290 @@ export default function App() {
       </header>
 
       {/* FILTER + SEARCH MAIN CONTAINER */}
-      <div className="sticky top-[72px] z-40 px-3 md:px-5 py-4 bg-slate-100">
+<div className="sticky top-[72px] z-40 px-2 md:px-4 py-3 bg-slate-100">
 
-        <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-lg border border-gray-200 p-4 md:p-5">
+  {/* MAIN CONTAINER */}
+  <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4">
 
-          {/* SEARCH CONTAINER */}
-          <div className="bg-slate-50 border border-gray-200 rounded-2xl p-3 md:p-4 mb-4">
+    {/* SEARCH BAR */}
+    <div className="w-full relative mb-3">
 
-            <div className="w-full relative">
+      <input
+        type="text"
+        placeholder="Search projects or locations"
+        value={searchTerm}
+        onChange={(e) => {
+          setSearchTerm(
+            e.target.value
+          );
+          setShowSuggestions(true);
+        }}
+        onFocus={() =>
+          setShowSuggestions(true)
+        }
+        className="w-full h-11 md:h-12 px-4 text-sm rounded-xl border border-gray-200 bg-slate-50 outline-none focus:ring-2 focus:ring-slate-300 transition"
+      />
 
-              <input
-                type="text"
-                placeholder="Search projects or locations"
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(
-                    e.target.value
-                  );
-                  setShowSuggestions(true);
-                }}
-                onFocus={() =>
-                  setShowSuggestions(true)
-                }
-                className="w-full px-4 py-3 text-sm md:text-base rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
-              />
+      {/* SEARCH DROPDOWN */}
+      {showSuggestions &&
+        searchTerm && (
 
-              {/* SEARCH DROPDOWN */}
-              {showSuggestions &&
-                searchTerm && (
+          <div className="absolute top-12 left-0 w-full bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 overflow-hidden">
 
-                  <div className="absolute top-14 left-0 w-full bg-white border border-gray-200 rounded-2xl shadow-2xl z-50 overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-2">
 
-                    <div className="grid grid-cols-1 md:grid-cols-2">
+              {/* PROJECTS */}
+              <div className="p-3 border-b md:border-b-0 md:border-r border-gray-100">
 
-                      {/* PROJECTS */}
-                      <div className="p-3 md:p-4 border-b md:border-b-0 md:border-r border-gray-200">
+                <h3 className="text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wide">
+                  Project Names
+                </h3>
 
-                        <h3 className="text-sm font-bold text-slate-700 mb-3">
-                          Project Names
-                        </h3>
+                <div className="space-y-1 max-h-[220px] overflow-y-auto">
 
-                        <div className="space-y-1 max-h-[250px] overflow-y-auto">
+                  {projectSuggestions.length > 0 ? (
 
-                          {projectSuggestions.length > 0 ? (
+                    projectSuggestions.map(
+                      (property) => (
 
-                            projectSuggestions.map(
-                              (property) => (
+                        <div
+                          key={property.id}
+                          className="px-3 py-2 rounded-xl hover:bg-slate-100 cursor-pointer transition"
+                          onClick={() => {
+                            setSearchTerm(
+                              property.projectName
+                            );
+                            setShowSuggestions(false);
+                          }}
+                        >
 
-                                <div
-                                  key={property.id}
-                                  className="px-3 py-2 rounded-xl hover:bg-slate-100 cursor-pointer transition"
-                                  onClick={() => {
-                                    setSearchTerm(
-                                      property.projectName
-                                    );
-                                    setShowSuggestions(false);
-                                  }}
-                                >
+                          <p className="text-sm font-medium text-slate-800">
+                            {property.projectName}
+                          </p>
 
-                                  <p className="font-medium text-sm text-slate-800">
-                                    {property.projectName}
-                                  </p>
-
-                                  <p className="text-xs text-gray-500">
-                                    {property.location}
-                                  </p>
-
-                                </div>
-
-                              )
-                            )
-
-                          ) : (
-
-                            <p className="text-sm text-gray-400">
-                              No Projects Found
-                            </p>
-
-                          )}
+                          <p className="text-xs text-gray-500">
+                            {property.location}
+                          </p>
 
                         </div>
 
+                      )
+                    )
+
+                  ) : (
+
+                    <p className="text-xs text-gray-400">
+                      No Projects Found
+                    </p>
+
+                  )}
+
+                </div>
+
+              </div>
+
+              {/* LOCATIONS */}
+              <div className="p-3">
+
+                <h3 className="text-xs font-semibold text-slate-600 mb-2 uppercase tracking-wide">
+                  Locations
+                </h3>
+
+                <div className="space-y-1 max-h-[220px] overflow-y-auto">
+
+                  {locationSuggestions.length > 0 ? (
+
+                    [
+                      ...new Set(
+                        locationSuggestions.map(
+                          (item) =>
+                            item.location
+                        )
+                      )
+                    ].map((location) => (
+
+                      <div
+                        key={location}
+                        className="px-3 py-2 rounded-xl hover:bg-slate-100 cursor-pointer transition"
+                        onClick={() => {
+                          setSearchTerm(
+                            location
+                          );
+                          setShowSuggestions(false);
+                        }}
+                      >
+
+                        <p className="text-sm font-medium text-slate-800">
+                          {location}
+                        </p>
+
                       </div>
 
-                      {/* LOCATIONS */}
-                      <div className="p-3 md:p-4">
+                    ))
 
-                        <h3 className="text-sm font-bold text-slate-700 mb-3">
-                          Locations
-                        </h3>
+                  ) : (
 
-                        <div className="space-y-1 max-h-[250px] overflow-y-auto">
+                    <p className="text-xs text-gray-400">
+                      No Locations Found
+                    </p>
 
-                          {locationSuggestions.length > 0 ? (
+                  )}
 
-                            [
-                              ...new Set(
-                                locationSuggestions.map(
-                                  (item) =>
-                                    item.location
-                                )
-                              )
-                            ].map((location) => (
+                </div>
 
-                              <div
-                                key={location}
-                                className="px-3 py-2 rounded-xl hover:bg-slate-100 cursor-pointer transition"
-                                onClick={() => {
-                                  setSearchTerm(
-                                    location
-                                  );
-                                  setShowSuggestions(false);
-                                }}
-                              >
-
-                                <p className="font-medium text-sm text-slate-800">
-                                  {location}
-                                </p>
-
-                              </div>
-
-                            ))
-
-                          ) : (
-
-                            <p className="text-sm text-gray-400">
-                              No Locations Found
-                            </p>
-
-                          )}
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                )}
+              </div>
 
             </div>
 
           </div>
 
-          {/* PROPERTY TYPE CONTAINER */}
-          <div className="bg-slate-50 border border-gray-200 rounded-2xl p-3 md:p-4 mb-4">
+        )}
 
-            <div className="flex gap-3 overflow-x-auto">
+    </div>
 
-              {/* PLOTS */}
-              <button
-                className={`px-5 py-2.5 text-sm rounded-xl whitespace-nowrap font-medium transition ${
-                  typeFilter === "Plot"
-                    ? "bg-slate-900 text-white shadow-md"
-                    : "bg-white border border-gray-200 hover:bg-slate-100"
-                }`}
-                onClick={() =>
-                  setTypeFilter(
-                    typeFilter === "Plot"
-                      ? "All"
-                      : "Plot"
-                  )
-                }
-              >
-                Plots
-              </button>
+    {/* PROPERTY TYPE BUTTONS */}
+    <div className="flex gap-2 overflow-x-auto mb-3 scrollbar-hide">
 
-              {/* APARTMENTS */}
-              <button
-                className={`px-5 py-2.5 text-sm rounded-xl whitespace-nowrap font-medium transition ${
-                  typeFilter === "Apartment"
-                    ? "bg-slate-900 text-white shadow-md"
-                    : "bg-white border border-gray-200 hover:bg-slate-100"
-                }`}
-                onClick={() =>
-                  setTypeFilter(
-                    typeFilter === "Apartment"
-                      ? "All"
-                      : "Apartment"
-                  )
-                }
-              >
-                Apartments
-              </button>
+      {/* PLOTS */}
+      <button
+        className={`px-4 h-10 text-xs md:text-sm rounded-xl whitespace-nowrap font-medium transition ${
+          typeFilter === "Plot"
+            ? "bg-slate-900 text-white shadow"
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+        }`}
+        onClick={() =>
+          setTypeFilter(
+            typeFilter === "Plot"
+              ? "All"
+              : "Plot"
+          )
+        }
+      >
+        Plots
+      </button>
 
-              {/* VILLAS */}
-              <button
-                className={`px-5 py-2.5 text-sm rounded-xl whitespace-nowrap font-medium transition ${
-                  typeFilter === "Villa"
-                    ? "bg-slate-900 text-white shadow-md"
-                    : "bg-white border border-gray-200 hover:bg-slate-100"
-                }`}
-                onClick={() =>
-                  setTypeFilter(
-                    typeFilter === "Villa"
-                      ? "All"
-                      : "Villa"
-                  )
-                }
-              >
-                Villas
-              </button>
+      {/* APARTMENTS */}
+      <button
+        className={`px-4 h-10 text-xs md:text-sm rounded-xl whitespace-nowrap font-medium transition ${
+          typeFilter === "Apartment"
+            ? "bg-slate-900 text-white shadow"
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+        }`}
+        onClick={() =>
+          setTypeFilter(
+            typeFilter === "Apartment"
+              ? "All"
+              : "Apartment"
+          )
+        }
+      >
+        Apartments
+      </button>
 
-            </div>
+      {/* VILLAS */}
+      <button
+        className={`px-4 h-10 text-xs md:text-sm rounded-xl whitespace-nowrap font-medium transition ${
+          typeFilter === "Villa"
+            ? "bg-slate-900 text-white shadow"
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+        }`}
+        onClick={() =>
+          setTypeFilter(
+            typeFilter === "Villa"
+              ? "All"
+              : "Villa"
+          )
+        }
+      >
+        Villas
+      </button>
 
-          </div>
+    </div>
 
-          {/* FILTER CONTAINER */}
-          <div className="bg-slate-50 border border-gray-200 rounded-2xl p-3 md:p-4">
+    {/* LOCATION + PRICE FILTER CONTAINER */}
+    <div className="flex gap-2">
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+      {/* LOCATION FILTER */}
+      <div className="flex-1">
 
-              {/* LOCATION FILTER */}
-              <select
-                className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
-                onChange={(e) =>
-                  setLocationFilter(
-                    e.target.value
-                  )
-                }
-              >
+        <select
+          className="w-full h-11 px-3 text-xs md:text-sm rounded-xl border border-gray-200 bg-slate-50 outline-none focus:ring-2 focus:ring-slate-300 transition"
+          onChange={(e) =>
+            setLocationFilter(
+              e.target.value
+            )
+          }
+        >
 
-                <option value="All">
-                  All Locations
-                </option>
+          <option value="All">
+            All Locations
+          </option>
 
-                <option value="Bangalore">
-                  Bangalore
-                </option>
+          <option value="Bangalore">
+            Bangalore
+          </option>
 
-                <option value="Mysore">
-                  Mysore
-                </option>
+          <option value="Mysore">
+            Mysore
+          </option>
 
-                <option value="Hyderabad">
-                  Hyderabad
-                </option>
+          <option value="Hyderabad">
+            Hyderabad
+          </option>
 
-                <option value="Chennai">
-                  Chennai
-                </option>
+          <option value="Chennai">
+            Chennai
+          </option>
 
-              </select>
-
-              {/* PRICE FILTER */}
-              <select
-                className="px-4 py-3 text-sm rounded-xl border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-slate-400"
-                onChange={(e) =>
-                  setPriceFilter(
-                    e.target.value
-                  )
-                }
-              >
-
-                <option value="All">
-                  Max Sqft Price
-                </option>
-
-                <option value="₹2500">
-                  Below ₹2500 / sqft
-                </option>
-
-                <option value="₹3500">
-                  Below ₹3500 / sqft
-                </option>
-
-                <option value="₹4500">
-                  Below ₹4500 / sqft
-                </option>
-
-                <option value="₹5500">
-                  Below ₹5500 / sqft
-                </option>
-
-                <option value="₹6500">
-                  Below ₹6500 / sqft
-                </option>
-
-              </select>
-
-            </div>
-
-          </div>
-
-        </div>
+        </select>
 
       </div>
+
+      {/* PRICE FILTER */}
+      <div className="flex-1">
+
+        <select
+          className="w-full h-11 px-3 text-xs md:text-sm rounded-xl border border-gray-200 bg-slate-50 outline-none focus:ring-2 focus:ring-slate-300 transition"
+          onChange={(e) =>
+            setPriceFilter(
+              e.target.value
+            )
+          }
+        >
+
+          <option value="All">
+            Sqft Price
+          </option>
+
+          <option value="₹2500">
+            Below ₹2500
+          </option>
+
+          <option value="₹3500">
+            Below ₹3500
+          </option>
+
+          <option value="₹4500">
+            Below ₹4500
+          </option>
+
+          <option value="₹5500">
+            Below ₹5500
+          </option>
+
+          <option value="₹6500">
+            Below ₹6500
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
       {/* PROPERTY SECTIONS */}
       {(typeFilter === "All" ||
