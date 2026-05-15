@@ -183,10 +183,10 @@ export default function App() {
       </header>
 
       {/* FILTER + SEARCH MAIN CONTAINER */}
-      <div className="sticky top-[72px] z-40 px-2 md:px-4 py-3 bg-slate-100">
+        <div className="sticky top-[72px] z-40 px-3 py-3 bg-slate-100 flex justify-center">
 
         {/* MAIN CONTAINER */}
-        <div className="max-w-7xl mx-auto bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4">
+        <div className="w-full max-w-[340px] sm:max-w-2xl md:max-w-5xl lg:max-w-7xl bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4"></div>
 
           {/* SEARCH BAR */}
           <div className="w-full relative mb-3">
