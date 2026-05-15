@@ -121,7 +121,8 @@ export default function App() {
 
     return (
 
-      <div className="px-3 md:px-8 py-6">
+
+      <div className="px-2 py-5 md:px-8 flex justify-center">
 
         {/* SECTION HEADER */}
         <div className="flex items-center justify-between mb-5">
@@ -140,8 +141,8 @@ export default function App() {
         <div
           className={
             isSingleView
-              ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
-              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+              ? "w-full max-w-[340px] sm:max-w-full grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
+              : "w-full max-w-[340px] sm:max-w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
           }
         >
 
@@ -183,7 +184,7 @@ export default function App() {
       </header>
 
       {/* FILTER + SEARCH MAIN CONTAINER */}
-        <div className="sticky top-[72px] z-40 px-3 py-3 bg-slate-100 flex justify-center">
+      <div className="sticky top-[72px] z-40 px-3 py-3 bg-slate-100 flex justify-center">
 
         {/* MAIN CONTAINER */}
         <div className="w-full max-w-[340px] sm:max-w-2xl md:max-w-5xl lg:max-w-7xl bg-white/95 backdrop-blur rounded-2xl shadow-md border border-gray-200 px-3 py-3 md:px-4 md:py-4">
@@ -331,8 +332,8 @@ export default function App() {
             {/* PLOTS */}
             <button
               className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Plot"
-                  ? "bg-slate-900 text-white shadow-md"
-                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+                ? "bg-slate-900 text-white shadow-md"
+                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
                 }`}
               onClick={() =>
                 setTypeFilter(
@@ -348,8 +349,8 @@ export default function App() {
             {/* APARTMENTS */}
             <button
               className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Apartment"
-                  ? "bg-slate-900 text-white shadow-md"
-                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+                ? "bg-slate-900 text-white shadow-md"
+                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
                 }`}
               onClick={() =>
                 setTypeFilter(
@@ -365,8 +366,8 @@ export default function App() {
             {/* VILLAS */}
             <button
               className={`h-10 rounded-xl text-xs md:text-sm font-semibold transition-all duration-300 ${typeFilter === "Villa"
-                  ? "bg-slate-900 text-white shadow-md"
-                  : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
+                ? "bg-slate-900 text-white shadow-md"
+                : "bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200"
                 }`}
               onClick={() =>
                 setTypeFilter(
@@ -381,96 +382,96 @@ export default function App() {
 
           </div>
 
-         {/* LOCATION + PRICE FILTER SECTION */}
-<div className="flex gap-2">
+          {/* LOCATION + PRICE FILTER SECTION */}
+          <div className="flex gap-2">
 
-  {/* LOCATION FILTER */}
-  <div className="flex-1 relative">
+            {/* LOCATION FILTER */}
+            <div className="flex-1 relative">
 
-    <select
-      className="w-full h-7 md:h-8 px-2.5 pr-7 text-[10px] md:text-[11px] rounded-lg bg-slate-50 border border-slate-200 shadow-sm outline-none focus:ring-1 focus:ring-slate-300 appearance-none text-slate-700"
-      onChange={(e) =>
-        setLocationFilter(
-          e.target.value
-        )
-      }
-    >
+              <select
+                className="w-full h-7 md:h-8 px-2.5 pr-7 text-[10px] md:text-[11px] rounded-lg bg-slate-50 border border-slate-200 shadow-sm outline-none focus:ring-1 focus:ring-slate-300 appearance-none text-slate-700"
+                onChange={(e) =>
+                  setLocationFilter(
+                    e.target.value
+                  )
+                }
+              >
 
-      <option value="All">
-        All Locations
-      </option>
+                <option value="All">
+                  All Locations
+                </option>
 
-      <option value="Bangalore">
-        Bangalore
-      </option>
+                <option value="Bangalore">
+                  Bangalore
+                </option>
 
-      <option value="Mysore">
-        Mysore
-      </option>
+                <option value="Mysore">
+                  Mysore
+                </option>
 
-      <option value="Hyderabad">
-        Hyderabad
-      </option>
+                <option value="Hyderabad">
+                  Hyderabad
+                </option>
 
-      <option value="Chennai">
-        Chennai
-      </option>
+                <option value="Chennai">
+                  Chennai
+                </option>
 
-    </select>
+              </select>
 
-    {/* DROPDOWN ICON */}
-    <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-[9px] text-slate-500">
-      ▼
-    </div>
+              {/* DROPDOWN ICON */}
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-[9px] text-slate-500">
+                ▼
+              </div>
 
-  </div>
+            </div>
 
-  {/* PRICE FILTER */}
-  <div className="flex-1 relative">
+            {/* PRICE FILTER */}
+            <div className="flex-1 relative">
 
-    <select
-      className="w-full h-7 md:h-8 px-2.5 pr-7 text-[10px] md:text-[11px] rounded-lg bg-slate-50 border border-slate-200 shadow-sm outline-none focus:ring-1 focus:ring-slate-300 appearance-none text-slate-700"
-      onChange={(e) =>
-        setPriceFilter(
-          e.target.value
-        )
-      }
-    >
+              <select
+                className="w-full h-7 md:h-8 px-2.5 pr-7 text-[10px] md:text-[11px] rounded-lg bg-slate-50 border border-slate-200 shadow-sm outline-none focus:ring-1 focus:ring-slate-300 appearance-none text-slate-700"
+                onChange={(e) =>
+                  setPriceFilter(
+                    e.target.value
+                  )
+                }
+              >
 
-      <option value="All">
-        All Prices
-      </option>
+                <option value="All">
+                  All Prices
+                </option>
 
-      <option value="₹2500">
-        Below ₹2500
-      </option>
+                <option value="₹2500">
+                  Below ₹2500
+                </option>
 
-      <option value="₹3500">
-        Below ₹3500
-      </option>
+                <option value="₹3500">
+                  Below ₹3500
+                </option>
 
-      <option value="₹4500">
-        Below ₹4500
-      </option>
+                <option value="₹4500">
+                  Below ₹4500
+                </option>
 
-      <option value="₹5500">
-        Below ₹5500
-      </option>
+                <option value="₹5500">
+                  Below ₹5500
+                </option>
 
-      <option value="₹6500">
-        Below ₹6500
-      </option>
+                <option value="₹6500">
+                  Below ₹6500
+                </option>
 
-    </select>
+              </select>
 
-    {/* DROPDOWN ICON */}
-    <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-[9px] text-slate-500">
-      ▼
-    </div>
+              {/* DROPDOWN ICON */}
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-[9px] text-slate-500">
+                ▼
+              </div>
 
-  </div>
+            </div>
 
-</div>
+          </div>
 
         </div>
 
